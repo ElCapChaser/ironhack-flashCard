@@ -1,5 +1,5 @@
 'use strict';
-
+const uploadMiddleware = require('./../middleware/file-upload');
 const { Router } = require('express');
 
 const bcryptjs = require('bcryptjs');
@@ -11,25 +11,37 @@ router.get('/sign-up', (req, res, next) => {
   res.render('sign-up');
 });
 
-router.post('/sign-up', (req, res, next) => {
-  const { name, email, password } = req.body;
-  bcryptjs
-    .hash(password, 10)
-    .then((hash) => {
-      return User.create({
-        name,
-        email,
-        passwordHashAndSalt: hash
+router.post(
+  '/sign-up',
+  uploadMiddleware.single('profilePicture'),
+  (req, res, next) => {
+    //Store the profile picture path if entered, otherwise leave undefined
+    console.log(req.file);
+    const picture = req.file ? req.file.path : undefined;
+    console.log(picture);
+    console.log(req.body);
+    const { name, email, password, fullTime, startDate } = req.body;
+    bcryptjs
+      .hash(password, 10)
+      .then((hash) => {
+        return User.create({
+          name,
+          email,
+          passwordHashAndSalt: hash,
+          profilePicture: picture,
+          fullTime,
+          startDate
+        });
+      })
+      .then((user) => {
+        req.session.userId = user._id;
+        res.redirect('/private');
+      })
+      .catch((error) => {
+        next(error);
       });
-    })
-    .then((user) => {
-      req.session.userId = user._id;
-      res.redirect('/private');
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
+  }
+);
 
 router.get('/sign-in', (req, res, next) => {
   res.render('sign-in');
