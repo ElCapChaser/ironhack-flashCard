@@ -1,0 +1,23 @@
+
+<h1>{{flashcard.questionTitle}}</h1>
+<small>{{flashcard.topic}}</small>
+{{#if flashcard.questionDescription}}
+<p>{{flashcard.questionDescription}}</p>
+{{/if}}
+<button id="answerButton">Show Answer</button>
+<div id="displayAnswer" style="display: none;">{{flashcard.solution}}</div>
+
+{{!-- <div>{{#each comments}}
+    <p>{{this}}</p>
+    {{/each}}
+</div> --}}
+
+<script>
+    const answer = document.getElementById('displayAnswer')
+    const answerButton = document.getElementById('answerButton'); 
+    answerButton.addEventListener('click', 
+        ()=> {
+            answer.style.display = "block"
+        })
+
+</script>

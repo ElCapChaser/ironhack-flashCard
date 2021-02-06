@@ -42,31 +42,31 @@ Tl;dr: we support the learning process during the ironhack bootcamp by providing
 -Creation date
 -Edit date
 
-
 ## Response Model (optional)
+
 - user
 - flashcard
 - answer
 - correct
 
-
 ## Response query to display RANDOM cards while filtering out correctly answered cards
+
 let query;
 
 Response.find({ user: req.user.?id }).select('flashcard')
-    .then(flashcardIds => {
-        query = {
-            $nin: {
-                -id: responseIds
-            }
-        };  
-        return Flashcard.count(query)
-    })
-    .then(total => {
-        return Flascard.findOne(query).skip(Math.floor(Math.random() * total))
-    })
-    .then(randomCard => {
-        
+.then(flashcardIds => {
+query = {
+$nin: {
+-id: responseIds
+}
+};  
+ return Flashcard.count(query)
+})
+.then(total => {
+return Flascard.findOne(query).skip(Math.floor(Math.random() \* total))
+})
+.then(randomCard => {
+
     })
 
 # Routes
@@ -79,7 +79,7 @@ POST - /browseflashcard - Browse Cards - Displaying all card titels filtered by 
 
 ### Flashcard
 
-GET - /flashCard/create - Create flashcard - Display flashcard creation form
+GET - /flashcard/create - Create flashcard - Display flashcard creation form
 POST - /flashcard/create - Create flashcard - Add flashcard to database
 GET - /flashcard/:id - Single flashcard - Display single flashcard (link to the update form, deletion form)
 GET - /flashcard/:id/update - Update flashcard - Display flashcard updating form

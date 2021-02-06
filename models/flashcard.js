@@ -14,11 +14,17 @@ const flashcardSchema = new mongoose.Schema({
         trim: true,
         max: 140
     },
+    questionImage: {
+        type: String
+    },
     solution: {
         type: String,
         trim: true,
         max: 140,
         required: true
+    },
+    solutionImage: {
+        type: String
     },
     // For multiple choice set-up
     // answers: [{
@@ -48,6 +54,7 @@ const flashcardSchema = new mongoose.Schema({
     },
     difficulty: {
         type: Number,
+        required: true,
         min: 0,
         max: 10
     },
