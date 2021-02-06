@@ -40,12 +40,14 @@ Tl;dr: we support the learning process during the ironhack bootcamp by providing
 
 # Routes
 
-METHOD  -  PATH                     - PAGE              - DESCRIPTION
-GET     - /                         - Home              - Displaying welcome page
-GET     - /randomflashcard          - Random Card       - Displaying a random practice card
-GET     - /browseflashcard          - Selection form    - Displaying form with filters for topic, difficulty & module
-POST    - /browseflashcard          - Browse Cards      - Displaying all card titels filtered by topic, difficulty & module
-GET     - /flashCard/create         - Create flashcard  - Display flashcard creation form
+METHOD  -  PATH                     - PAGE                  - DESCRIPTION
+GET     - /                         - Home                  - Displaying welcome page
+GET     - /randomflashcard          - Random Card           - Displaying a random practice card
+GET     - /browseflashcard          - Selection form        - Displaying form with filters for topic, difficulty & module
+POST    - /browseflashcard          - Browse Cards          - Displaying all card titels filtered by topic, difficulty & module
+
+### Flashcard
+GET     - /flashCard/create         - Create flashcard      - Display flashcard creation form
 POST    - /flashcard/create         - Create flashcard      - Add flashcard to database
 GET     - /flashcard/:id            - Single flashcard      - Display single flashcard (link to the update form, deletion form)
 GET     - /flashcard/:id/update     - Update flashcard      - Display flashcard updating form
@@ -62,5 +64,5 @@ GET     - /user/login               - Login                 - Display login form
 POST    - /user/login               - User profile          - Display user profile
 
 ### Comment
-GET     - /comment/create         - Create comment      - Display comment creation form
-POST    - /comment/create         - Create comment      - Add comment to database
+GET     - /comment/create         - Create comment          - Display comment creation form
+POST    - /comment/create         - Create comment          - Add comment to database
