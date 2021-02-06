@@ -20,6 +20,11 @@ const flashcardSchema = new mongoose.Schema({
         max: 140,
         required: true
     },
+    // For multiple choice set-up
+    // answers: [{
+    //     message: String,
+    //     correct: Boolean
+    // }],
     topic: {
         type: String,
         required: true,

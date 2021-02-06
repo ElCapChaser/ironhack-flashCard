@@ -32,6 +32,8 @@ Tl;dr: we support the learning process during the ironhack bootcamp by providing
 -Creation date
 -Edit date
 
+-Optional: multiplechoice answers
+
 ## Comment Model
 
 -Comment content - Char 140
@@ -39,6 +41,33 @@ Tl;dr: we support the learning process during the ironhack bootcamp by providing
 -Flashcard id
 -Creation date
 -Edit date
+
+
+## Response Model (optional)
+- user
+- flashcard
+- answer
+- correct
+
+
+## Response query to display RANDOM cards while filtering out correctly answered cards
+let query;
+
+Response.find({ user: req.user.?id }).select('flashcard')
+    .then(flashcardIds => {
+        query = {
+            $nin: {
+                -id: responseIds
+            }
+        };  
+        return Flashcard.count(query)
+    })
+    .then(total => {
+        return Flascard.findOne(query).skip(Math.floor(Math.random() * total))
+    })
+    .then(randomCard => {
+        
+    })
 
 # Routes
 
