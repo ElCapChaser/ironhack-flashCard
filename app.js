@@ -2,6 +2,10 @@
 
 const path = require('path');
 const express = require('express');
+
+var hbs = require('hbs');
+hbs.registerHelper('equal', require('handlebars-helper-equal'));
+
 const createError = require('http-errors');
 const connectMongo = require('connect-mongo');
 const expressSession = require('express-session');
