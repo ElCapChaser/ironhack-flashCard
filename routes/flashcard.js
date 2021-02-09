@@ -55,8 +55,15 @@ router.post(
 router.get('/:id', (req, res, next) => {
     Flashcard.findById(req.params.id)
         .then((flashcard) => {
+            let isCreator = false;
+
+            if (req.user._id.equals(flashcard.creator._id)) {
+                isCreator = true;
+            }
+            console.log(isCreator);
             res.render('flashcards/single', {
-                flashcard: flashcard
+                flashcard: flashcard,
+                isCreator: isCreator
             });
         })
         .catch((error) => {
