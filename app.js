@@ -18,6 +18,7 @@ const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js')
 const baseRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
 const flashcardRouter = require('./routes/flashcard');
+const choicecardRouter = require('./routes/choicecard');
 const commentsRouter = require('./routes/newComment');
 const hbs = require('hbs');
 
@@ -64,6 +65,7 @@ app.use(bindUserToViewLocals);
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/flashcard', flashcardRouter);
+app.use('/choicecard', choicecardRouter);
 app.use('/', commentsRouter);
 
 // Catch missing routes and forward to error handler

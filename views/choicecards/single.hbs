@@ -1,0 +1,52 @@
+
+<h1>{{choicecard.questionTitle}}</h1>
+<small>{{choicecard.topic}} <span id="choicecard-upvotes">Upvotes: {{choicecard.upvotes}}</span><span id="choicecard-errorvotes">Errorvotes: {{choicecard.errorvotes}}</span></small>
+{{#if choicecard.questionDescription}}
+<p>{{choicecard.questionDescription}}</p>
+{{/if}}
+
+<div>
+  <p>Please select the correct answer:</p>
+<form method="POST" >
+    <input type="radio" id="answer1"
+           name="answer" value="{{choicecard.answers.[0].correct}}">
+    <label for="answer1">{{choicecard.answers.[0].message}}</label>
+<br>
+    <input type="radio" id="answer2"
+           name="answer" value="{{choicecard.answers.[1].correct}}">
+    <label for="answer2">{{choicecard.answers.[1].message}}</label>
+<br>
+    <input type="radio" id="answer3"
+           name="answer" value="{{choicecard.answers.[2].correct}}">
+    <label for="answer3">{{choicecard.answers.[2].message}}</label>
+<br>
+    <input type="radio" id="answer4"
+           name="answer" value="{{choicecard.answers.[3].correct}}">
+    <label for="answer4">{{choicecard.answers.[3].message}}</label>
+    <button id="checkAnswer">Check Answer</button>
+</form>
+
+</div>
+
+
+{{!-- <div>{{#each comments}}
+    <p>{{this}}</p>
+    {{/each}}
+</div> --}}
+
+{{#if user}}
+<form action="/choicecard/{{choicecard._id}}/upvote" method="POST"><button>Upvote!</button></form>
+<form action="/choicecard/{{choicecard._id}}/errorvote" method="POST"><button>Flag an Error!</button></form>
+{{!-- check if user is creater of this flashcard. only then show delete and edit button --}}
+
+<button><a href="/choicecard/{{choicecard._id}}/delete">Delete this flashcard</a></button>
+<button><a href="/choicecard/{{choicecard._id}}/update">Edit this flashcard</a></button>
+
+{{/if}}
+
+<script>
+    const check= document.getElementById('checkAnswer')
+    check.addEventListener('click' , (event) => {
+        console.log(event)
+    })
+</script>
