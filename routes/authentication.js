@@ -21,21 +21,33 @@ router.post(
     console.log(picture);
     console.log(req.body);
     const { name, email, password, fullTime, startDate } = req.body;
-    bcryptjs
-      .hash(password, 10)
-      .then((hash) => {
-        return User.create({
-          name,
-          email,
-          passwordHashAndSalt: hash,
-          profilePicture: picture,
-          fullTime,
-          startDate
-        });
-      })
+    User.findOne({ email: email })
       .then((user) => {
-        req.session.userId = user._id;
-        res.redirect('/private');
+        console.log(user);
+        if (user) {
+          res.render('sign-up', {
+            errorMessage: 'Wooppss!! A user already exists with this email'
+          });
+          return;
+        } else {
+          bcryptjs
+            .hash(password, 10)
+            .then((hash) => {
+              return User.create({
+                name,
+                email,
+                passwordHashAndSalt: hash,
+                profilePicture: picture,
+                fullTime,
+                startDate
+              });
+            })
+            .then((user) => {
+              req.session.userId = user._id;
+              res.redirect('/private');
+            })
+            .catch((error) => next(error));
+        }
       })
       .catch((error) => {
         next(error);

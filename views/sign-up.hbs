@@ -1,3 +1,10 @@
+
+<div>
+  {{#if errorMessage}}
+    {{errorMessage}}
+  {{/if}}
+</div>
+
 <form action="/authentication/sign-up" method="POST" enctype="multipart/form-data">
   <label for="input-name">Name</label>
   <input type="text" id="input-name" name="name" placeholder="Your Name" required />

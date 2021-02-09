@@ -1,0 +1,32 @@
+<h2>Browse Flashcards</h2>
+<form method="POST">
+    
+  <label for="topic">Browse by TOPIC: </label>
+  <select name="topic" id="question-topic" required>
+    <option value="" selected disabled>Topic</option> <!-- Display empty placeholder value-->
+    <option value="Javascript - Syntax">Javascript - Syntax</option>
+    <option value="Javascript - Basic Logic">Javascript - Basic Logic</option>
+    <option value="Javascript - Object Oriented Programming">Javascript - Object Oriented Programming</option>
+    <option value="HTML">HTML</option>
+    <option value="Node">Node</option>
+    <option value="Node - Express">Node - Express</option>
+    <option value="MongoDB - Queries">MongoDB - Queries</option>
+    <option value="Deployment">Deployment</option>
+    <option value="Templating">Templating</option>
+    <option value="GIT">GIT</option>
+  </select>
+
+<button>Browse</button>
+
+
+</form>
+
+<hr>
+
+<div id="displayFlashcards">
+    {{#each flashcards}}
+    <button><a href="/flashcard/{{this._id}}">{{this.questionTitle}}</a></button>
+    {{/each}}
+</div>
+
+{{> comments }}

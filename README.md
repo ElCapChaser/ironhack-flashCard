@@ -79,6 +79,10 @@ POST - /browseflashcard - Browse Cards - Displaying all card titels filtered by 
 
 ### Flashcard
 
+GET - /flashcard/randomflashcard - Random Card - Displaying a random practice card
+GET - /flashcard/browseflashcard - Selection form - Displaying form with filters for topic, difficulty & module
+POST - /flashcard/browseflashcard - Browse Cards - Displaying all card titels filtered by topic, difficulty & module
+
 GET - /flashcard/create - Create flashcard - Display flashcard creation form
 POST - /flashcard/create - Create flashcard - Add flashcard to database
 GET - /flashcard/:id - Single flashcard - Display single flashcard (link to the update form, deletion form)
