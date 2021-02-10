@@ -79,16 +79,27 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-//update flashcard
-router.get('/:id/update', (req, res, next) => {
-  const id = req.params.id;
-  Flashcard.findById(id)
-    .then((flashcard) => {
-      res.render('flashcards/update', { flashcard: flashcard });
-    })
-    .catch((error) => {
-      next(error);
-    });
+//update flashcard -- PROMISE CHAIN
+// router.get('/:id/update', (req, res, next) => {
+//   const id = req.params.id;
+//   Flashcard.findById(id)
+//     .then((flashcard) => {
+//       res.render('flashcards/update', { flashcard: flashcard });
+//     })
+//     .catch((error) => {
+//       next(error);
+//     });
+// });
+
+//update flashcard -- ASYNC AWAIT
+router.get('/:id/update', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const flashcard = await Flashcard.findById(id);
+    res.render('flashcards/update', { flashcard: flashcard });
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.post(
@@ -130,27 +141,37 @@ router.post(
   }
 );
 
-//delete flashcard
-router.get('/:id/delete', (req, res, next) => {
-  const id = req.params.id;
-  Flashcard.findById(id)
-    .then((flashcard) => {
-      res.render('flashcards/confirm-deletion', { flashcard: flashcard });
-    })
-    .catch((error) => {
-      next(error);
-    });
+//delete flashcard - PROMISE CHAIN
+// router.get('/:id/delete', (req, res, next) => {
+//   const id = req.params.id;
+//   Flashcard.findById(id)
+//     .then((flashcard) => {
+//       res.render('flashcards/confirm-deletion', { flashcard: flashcard });
+//     })
+//     .catch((error) => {
+//       next(error);
+//     });
+// });
+
+//delete flashcard - ASYNC AWAIT
+router.get('/:id/delete', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const flashcard = await Flashcard.findById(id);
+    res.render('flashcards/confirm-deletion', { flashcard });
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.post('/:id/delete', (req, res, next) => {
-  const id = req.params.id;
-  Flashcard.findByIdAndDelete(id)
-    .then(() => {
-      res.redirect('/');
-    })
-    .catch((error) => {
-      next(error);
-    });
+router.post('/:id/delete', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const flashcard = await Flashcard.findByIdAndDelete(id);
+    res.redirect('/browse');
+  } catch (error) {
+    next(error);
+  }
 });
 
 //upvote flashcard
