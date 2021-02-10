@@ -37,6 +37,13 @@
 
 {{/if}}
 
+
+<form action="/flashcard/{{flashcard._id}}/new-comment" method="POST">
+    <input type="text" id="input-comment" name="comment" placeholder="Leave a comment here!" maxlength="140" required>
+    <button>Submit comment</button>
+</form>
+
+
 <script>
     const answer = document.getElementById('displayAnswer')
     const answerButton = document.getElementById('answerButton'); 

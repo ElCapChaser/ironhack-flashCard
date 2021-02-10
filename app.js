@@ -3,7 +3,7 @@
 const path = require('path');
 const express = require('express');
 
-var hbs = require('hbs');
+const hbs = require('hbs');
 hbs.registerHelper('equal', require('handlebars-helper-equal'));
 
 const createError = require('http-errors');
@@ -20,7 +20,6 @@ const authenticationRouter = require('./routes/authentication');
 const flashcardRouter = require('./routes/flashcard');
 const choicecardRouter = require('./routes/choicecard');
 const commentsRouter = require('./routes/newComment');
-const hbs = require('hbs');
 
 const app = express();
 
