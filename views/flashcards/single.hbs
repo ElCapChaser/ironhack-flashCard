@@ -27,13 +27,12 @@
 <form action="/flashcard/{{flashcard._id}}/upvote" method="POST"><button>Upvote!</button></form>
 <form action="/flashcard/{{flashcard._id}}/errorvote" method="POST"><button>Flag an Error!</button></form>
 
-<p>{{user._id}} {{flashcard.creator._id}}</p>
 
 {{!-- check if user is creater of this flashcard. only then show delete and edit button --}}
-{{#equal user._id flashcard.creator._id}}
+{{#if isCreator}}
 <button><a href="/flashcard/{{flashcard._id}}/delete">Delete this flashcard</a></button>
 <button><a href="/flashcard/{{flashcard._id}}/update">Edit this flashcard</a></button>
-{{/equal}}
+{{/if}}
 
 {{/if}}
 

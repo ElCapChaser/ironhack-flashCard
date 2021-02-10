@@ -20,7 +20,9 @@ Tl;dr: we support the learning process during the ironhack bootcamp by providing
 -Question title - char restricted 50
 -Question description - char restricted 140 - Optional
 -Question File upload - optional
--Question Code snippet upload - optional --> ????? how to?
+
+-Question Code snippet upload - optional --> ????? how to? //TODO
+
 -Solution - char restricted 140
 -Solution File upload - optional
 -Solution code snippet upload - optional
@@ -28,11 +30,24 @@ Tl;dr: we support the learning process during the ironhack bootcamp by providing
 -Module 1 / 2 / 3
 -Difficulty [Nice to have - make it votable]
 -Upvote
--Errorvote -- notify owner with email that an error was spotted.
+-Errorvote -- notify owner with email that an error was spotted.//TODO
 -Creation date
--Edit date
+-Edit date //TODO
 
--Optional: multiplechoice answers
+## Flashcard Model
+
+-Question title - char restricted 50
+-Question description - char restricted 140 - Optional
+-Question Code snippet upload - optional --> ?????
+
+- 4 possible answers, one of which is correct
+  -Topic enum [ Javascript: Basic Logic, Object Oriented, CSS: Selectors, Bootstrap, SCSS, Node.js: Express, mongoose, templating hbs, Deploying: Heroku]
+  -Module 1 / 2 / 3
+  -Difficulty [Nice to have - make it votable]
+  -Upvote
+  -Errorvote -- notify owner with email that an error was spotted //TODO
+  -Creation date
+  -Edit date //TODO
 
 ## Comment Model
 
@@ -79,10 +94,6 @@ POST - /browseflashcard - Browse Cards - Displaying all card titels filtered by 
 
 ### Flashcard
 
-GET - /flashcard/randomflashcard - Random Card - Displaying a random practice card
-GET - /flashcard/browseflashcard - Selection form - Displaying form with filters for topic, difficulty & module
-POST - /flashcard/browseflashcard - Browse Cards - Displaying all card titels filtered by topic, difficulty & module
-
 GET - /flashcard/create - Create flashcard - Display flashcard creation form
 POST - /flashcard/create - Create flashcard - Add flashcard to database
 GET - /flashcard/:id - Single flashcard - Display single flashcard (link to the update form, deletion form)
@@ -92,6 +103,18 @@ GET - /flashcard/:id/delete - Delete flashcard - Displays deletion confirmation
 POST - /flashcard/:id/delete - Delete flashcard - Delete flashcard
 POST - /flashcard/:id/upvote - Upvote flashcard - Increments points of flashcard by 1
 POST - /flashcard/:id/errorvote - Errorvote flashcard - Increments error points of flashcard by 1
+
+### Choicecard
+
+GET - /choicecard/create - Create choicecard - Display choicecard creation form
+POST - /choicecard/create - Create choicecard - Add choicecard to database
+GET - /choicecard/:id - Single choicecard - Display single choicecard (link to the update form, deletion form)
+GET - /choicecard/:id/update - Update choicecard - Display choicecard updating form
+POST - /choicecard/:id/update - Update choicecard - Update choicecard
+GET - /choicecard/:id/delete - Delete choicecard - Displays deletion confirmation
+POST - /choicecard/:id/delete - Delete choicecard - Delete choicecard
+POST - /choicecard/:id/upvote - Upvote choicecard - Increments points of choicecard by 1
+POST - /choicecard/:id/errorvote - Errorvote choicecard - Increments error points of choicecard by 1
 
 ### User
 
