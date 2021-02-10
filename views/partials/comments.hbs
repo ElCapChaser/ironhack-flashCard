@@ -8,9 +8,9 @@
     {{#each comment}}
     <li>
         {{content}}
-        {{creator}}
-        {{createdAt}}
-
+        <span>
+            Created by {{creator.name}} | Last updated on {{dateFormat updateDate "DD-MM-YYYY"}} 
+        </span>
     </li>
     {{/each}}
 </ul>

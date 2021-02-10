@@ -64,8 +64,8 @@ router.get('/:id', (req, res, next) => {
       if (req.user._id.equals(flashcard.creator._id)) {
         isCreator = true;
       }
-      //lookup all comments matching to the flashcard ID
-      return Comment.find({ flashcard: id });
+      //lookup all comments matching to the flashcard ID and populating the creator
+      return Comment.find({ flashcard: id }).populate('creator', 'name');
     })
     .then((comment) => {
       res.render('flashcards/single', {
