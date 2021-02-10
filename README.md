@@ -125,4 +125,11 @@ POST - /user/login - User profile - Display user profile
 
 ### Comment
 
-POST - /comment/create - Create comment - Add comment to database
+POST - /flashcard/:id/comment - Create comment - Add comment to database
+
+
+
+### Comment response model
+
+POST Comment is saved with flashcard ID
+When dispalying a single flashcard we should display the relevant comments

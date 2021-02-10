@@ -11,16 +11,11 @@ router.post('/flashcard/:id/new-comment', (req, res, next) => {
     creator: req.user._id
   })
     .then((comment) => {
-      res.send('hithere');
+      res.redirect(`/flashcard/${id}`);
     })
     .catch((error) => {
       next(error);
     });
-});
-
-//temporary get for testing
-router.get('/new-comment', (req, res, next) => {
-  res.render('partials/comments.hbs');
 });
 
 module.exports = router;

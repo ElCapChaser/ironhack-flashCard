@@ -3,3 +3,14 @@
     <input type="text" id="input-comment" name="comment" placeholder="Leave a comment here!" maxlength="140" required>
     <button>Submit comment</button>
 </form>
+
+<ul>
+    {{#each comment}}
+    <li>
+        {{content}}
+        {{creator}}
+        {{createdAt}}
+
+    </li>
+    {{/each}}
+</ul>
