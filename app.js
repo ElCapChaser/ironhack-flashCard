@@ -3,12 +3,9 @@
 const path = require('path');
 const express = require('express');
 
-<<<<<<< HEAD
 const hbs = require('hbs');
 hbs.registerHelper('equal', require('handlebars-helper-equal'));
 
-=======
->>>>>>> dce53415ee3179364e809bb4547c264a470287bf
 const createError = require('http-errors');
 const connectMongo = require('connect-mongo');
 const expressSession = require('express-session');
