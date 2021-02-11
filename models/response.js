@@ -17,9 +17,9 @@ const responseSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'User'
     },
-    flashcard: {
+    card: {
         type: mongoose.Types.ObjectId,
-        ref: 'Flashcard'
+        ref: 'Choicecard'
     }
 }, {
     timestamps: {

@@ -1,4 +1,5 @@
-<h2>Browse Flashcards</h2>
+<div id="browse">
+<h2>Browse {{cardtype}}</h2>
 <form method="POST">
     
   <label for="topic">Browse by TOPIC: </label>
@@ -20,12 +21,18 @@
 
 
 </form>
-
-<hr>
+</div>
 
 <div id="displayFlashcards">
-    {{#each flashcards}}
+  <h4>Results</h4>
+    {{#if isflashcard}}
+        {{#each flashcards}}
     <button><a href="/flashcard/{{this._id}}">{{this.questionTitle}}</a></button>
-    {{/each}}
+        {{/each}}
+    {{else}}
+    {{#each flashcards}}
+    <button><a href="/choicecard/{{this._id}}">{{this.questionTitle}}</a></button>
+            {{/each}}
+    {{/if}}
 </div>
 

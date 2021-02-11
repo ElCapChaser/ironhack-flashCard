@@ -59,47 +59,49 @@ router.get('/:id', (req, res, next) => {
 // check if correct Answer was given to choicecard:
 router.post('/:id', (req, res, next) => {
     console.log(req.body);
-    Choicecard.findById(req.params.id)
-        .then((choicecard) => {
-            // check if user has answered this card before
-            const existingResponse = Response.find({
-                $and: {
-                    user: req.params.user,
-                    flashcard: choicecard
+    Choicecard.findById(req.params.id).then((choicecard) => {
+        console.log(choicecard);
+        // check if user has answered this card before
+        // NEED HELP WITH THIS QUERY
+        Response.find({ user: req.params.user, card: choicecard })
+            .then((existingResponse) => {
+                console.log('existing response');
+                console.log(existingResponse);
+                if (existingResponse.length > 0) {
+                    // if value is not null
+                    console.log('user already answered this card - ');
+                    return Response.findByIdAndUpdate(existingResponse._id, {
+                        correct: req.body.answer,
+                        user: req.user,
+                        card: choicecard
+                    });
+                } else {
+                    //if user has not answered this card before
+                    console.log('creating new response');
+                    return Response.create({
+                        correct: req.body.answer,
+                        user: req.user,
+                        card: choicecard
+                    });
                 }
-            });
-            if (existingResponse) {
-                // if value is not null
-                return Response.findByIdAndUpdate(existingResponse._id, {
-                    correct: req.body.answer,
-                    user: req.user,
-                    flashcard: choicecard
+            })
+            .then((response) => {
+                console.log(response);
+                let feedbackMsg;
+                if (req.body.answer === 'true') {
+                    feedbackMsg = 'That is correct! Great Job!';
+                } else {
+                    feedbackMsg = "Sorry, that wasn't right, please try again! ";
+                }
+                res.render('choicecards/feedback', {
+                    feedbackMsg: feedbackMsg,
+                    id: req.params.id
                 });
-            } else {
-                //if user has not answered this card before
-                return Response.create({
-                    correct: req.body.answer,
-                    user: req.user,
-                    flashcard: choicecard
-                });
-            }
-        })
-        .then((response) => {
-            console.log(response);
-            let feedbackMsg;
-            if (req.body.answer === 'true') {
-                feedbackMsg = 'That is correct! Great Job!';
-            } else {
-                feedbackMsg = "Sorry, that wasn't right, please try again! ";
-            }
-            res.render('choicecards/feedback', {
-                feedbackMsg: feedbackMsg,
-                id: req.params.id
+            })
+            .catch((error) => {
+                next(error);
             });
-        })
-        .catch((error) => {
-            next(error);
-        });
+    });
 });
 
 //update choicecard
