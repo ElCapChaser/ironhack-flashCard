@@ -72,14 +72,12 @@ router.get('/:id', (req, res, next) => {
 });
 
 // check if correct Answer was given to choicecard:
-router.post('/:id', (req, res, next) => { <<
-    << << < HEAD
+router.post('/:id', (req, res, next) => {
     console.log(req.body);
     Choicecard.findById(req.params.id).then((choicecard) => {
         //console.log(choicecard);
         console.log(req.user._id);
         // check if user has answered this card before
-        // NEED HELP WITH THIS QUERY
         Response.find({ user: req.user._id, card: req.params.id })
             .then((existingResponse) => {
                 console.log('existing response');
@@ -116,11 +114,8 @@ router.post('/:id', (req, res, next) => { <<
             .catch((error) => {
                 next(error);
             });
-    }); ===
-    === =
-
+    });
 });
-
 
 //update choicecard -- ASYNC AWAIT
 router.get('/:id/update', async(req, res, next) => {
