@@ -1,0 +1,53 @@
+<h1>Edit choicecard</h1>
+
+<form method="POST" enctype="multipart/form-data">
+  <label for="question-title">Title</label>
+  <input type="text" id="question-title" name="title" placeholder="Title" value="{{choicecard.questionTitle}}" required/>
+
+  <label for="question-description">Description:</label>
+  <input type="text" id="question-description" name="description" placeholder="Add more detail..." value="{{choicecard.questionDescription}}" />
+ 
+ {{!-- how to set value to already uploaded picture?? --}}
+  <label for="question-image">Upload an image to illustrate your question: </label>
+  <input type="file" id="question-image" name="questionImage" accept="image/png, image/jpeg"> 
+
+
+  <label for="solution">Solution:</label>
+  <input type="text" id="solution" name="solution" placeholder="And the solution..." value="{{choicecard.solution}}" required/>
+
+
+  <label for="solution-image">Upload an image to illustrate the solution: </label>
+  <input type="file" id="solution-image" name="solutionImage" accept="image/png, image/jpeg">
+
+
+  <label for="topic">Main Topic: </label>
+  <select name="topic" id="question-topic" required>
+    <option value="" selected disabled>Topic</option> <!-- Display empty placeholder value-->
+    <option value="Javascript - Syntax">Javascript - Syntax</option>
+    <option value="Javascript - Basic Logic">Javascript - Basic Logic</option>
+    <option value="Javascript - Object Oriented Programming">Javascript - Object Oriented Programming</option>
+    <option value="HTML">HTML</option>
+    <option value="Node">Node</option>
+    <option value="Node - Express">Node - Express</option>
+    <option value="MongoDB - Queries">MongoDB - Queries</option>
+    <option value="Deployment">Deployment</option>
+    <option value="Templating">Templating</option>
+    <option value="GIT">GIT</option>
+  </select>
+
+
+<label for="module">Question relates to Module...: </label>
+  <select name="module" id="module" required>
+    <option value="" selected disabled>Module</option> <!-- Display empty placeholder value-->
+    <option value="Module 1">Module 1</option>
+    <option value="Module 2">Module 2</option>
+    <option value="Module 3">Module 3</option>
+  </select>
+
+          
+
+  <label for="question-difficulty">Rate the difficulty of your quetstion on a scale of 1 through 10: </label>
+  <input type="range" min="1" max="10" step="1" id="question-difficulty" name="difficulty" value="{{choicecard.difficulty}}"  required>
+
+  <button type="submit">Submit</button>
+</form>
