@@ -1,9 +1,11 @@
-
+<div id="card">
 <h1>{{flashcard.questionTitle}}</h1>
 <small>{{flashcard.topic}} <span id="flashcard-upvotes">Upvotes: {{flashcard.upvotes}}</span><span id="flashcard-errorvotes">Errorvotes: {{flashcard.errorvotes}}</span></small>
 {{#if flashcard.questionDescription}}
 <p>{{flashcard.questionDescription}}</p>
 {{/if}}
+</div>
+
 {{#if flashcard.questionImage}}
 <p><img src="{{flashcard.questionImage}}" alt="oops there was a problem loading the image" height="300" ></p>
 {{/if}}

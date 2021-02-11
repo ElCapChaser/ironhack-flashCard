@@ -48,6 +48,76 @@
   border: 1px solid black;
 }
 
+#card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: -2px 2px 2px 2px lightgray;
+  margin: 2em;
+  padding: 1em;
+}
+
+#card h1 {
+  padding: 2em;
+}
+
+#card small #topic {
+  font-weight: 700;
+  background-color: #b99e9e;
+}
+
+#card small span {
+  padding: 0.5em 1em;
+  background-color: #b6b6b6;
+}
+
+#selectAnswer {
+  box-shadow: -2px 2px 2px 2px lightgray;
+  margin: 2em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.3em;
+}
+
+#selectAnswer form {
+  display: flex;
+}
+
+#selectAnswer form p {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  padding: 0 2em;
+  border: 1px solid #cccccc;
+}
+
+#selectAnswer form p input {
+  margin: 1em 2em 0 0;
+}
+
+#selectAnswer button {
+  padding: 0.5em;
+  font-weight: 700;
+  background-color: #d5f2f3;
+  box-shadow: -1px 1px 1px 1px lightgray;
+}
+
+#editButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#editButtons button {
+  padding: 0.5em;
+  margin: 1em;
+  font-weight: 700;
+  background-color: #f8efc4;
+  box-shadow: -1px 1px 1px 1px lightgray;
+}
+
 nav {
   font-weight: 700;
   border-bottom: 1px solid darkslategrey;

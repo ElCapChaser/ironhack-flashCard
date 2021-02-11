@@ -60,20 +60,19 @@ router.get('/:id', (req, res, next) => {
 router.post('/:id', (req, res, next) => {
     console.log(req.body);
     Choicecard.findById(req.params.id).then((choicecard) => {
-        console.log(choicecard);
+        //console.log(choicecard);
+        console.log(req.user._id);
         // check if user has answered this card before
         // NEED HELP WITH THIS QUERY
-        Response.find({ user: req.params.user, card: choicecard })
+        Response.find({ user: req.user._id, card: req.params.id })
             .then((existingResponse) => {
                 console.log('existing response');
                 console.log(existingResponse);
                 if (existingResponse.length > 0) {
                     // if value is not null
                     console.log('user already answered this card - ');
-                    return Response.findByIdAndUpdate(existingResponse._id, {
-                        correct: req.body.answer,
-                        user: req.user,
-                        card: choicecard
+                    return Response.findByIdAndUpdate(existingResponse[0]._id, {
+                        correct: req.body.answer
                     });
                 } else {
                     //if user has not answered this card before
