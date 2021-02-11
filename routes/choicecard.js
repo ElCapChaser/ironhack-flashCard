@@ -53,7 +53,7 @@ router.get('/:id', (req, res, next) => {
             console.log('card', card);
             choicecard = card;
             //Checking if the authenticated user is also owner of the choicecard
-            if (req.user._id.equals(choicecard.creator._id)) {
+            if (choicecard.creator && req.user._id.equals(choicecard.creator._id)) {
                 isCreator = true;
             }
             //lookup all comments matching to the choicecard ID and populating the creator
