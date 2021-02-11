@@ -21,16 +21,32 @@ const Comment = require('./../models/comment');
 
 //Written as ASYNC AWAIT
 
-router.post('/flashcard/:id/new-comment', async (req, res, next) => {
+// router.post('/flashcard/:id/new-comment', async (req, res, next) => {
+//   const data = req.body;
+//   const id = req.params.id;
+//   try {
+//     const comment = await Comment.create({
+//       content: data.comment,
+//       flashcard: id,
+//       creator: req.user._id
+//     });
+//     res.redirect(`/flashcard/${id}`);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+
+router.post('/choicecard/:id/new-comment', async (req, res, next) => {
   const data = req.body;
   const id = req.params.id;
   try {
     const comment = await Comment.create({
       content: data.comment,
-      flashcard: id,
+      choicecard: id,
       creator: req.user._id
     });
-    res.redirect(`/flashcard/${id}`);
+    res.redirect(`/choicecard/${id}`);
   } catch (error) {
     next(error);
   }

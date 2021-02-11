@@ -14,9 +14,9 @@ const commentSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: 'User'
     },
-    flashcard: {
+    choicecard: {
       type: mongoose.Types.ObjectId,
-      ref: 'Flashcard'
+      ref: 'Choicecard'
     }
   },
   {

@@ -17,7 +17,6 @@ const basicAuthenticationDeserializer = require('./middleware/basic-authenticati
 const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js');
 const baseRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
-const flashcardRouter = require('./routes/flashcard');
 const choicecardRouter = require('./routes/choicecard');
 const commentsRouter = require('./routes/newComment');
 
@@ -64,7 +63,6 @@ app.use(bindUserToViewLocals);
 
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
-app.use('/flashcard', flashcardRouter);
 app.use('/choicecard', choicecardRouter);
 app.use('/', commentsRouter);
 
