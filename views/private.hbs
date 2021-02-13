@@ -1,5 +1,23 @@
-<h1>Private</h1>
-<p>This page should only be accessible to authenticated users.</p>
-<span><strong>Name</strong>: {{user.name}}</span>
-<br />
-<span><strong>Email</strong>: {{user.email}}</span>
+<div id="profileHeader">
+    <div>
+        <h1>{{user.name}}'s Profile</h1>
+    <h4>Bootcamp: {{#if user.fullTime}}Full Time{{else}}Part Time{{/if}}</h4>
+<img src="{{user.profilePicture}}" alt="awesome profile pic">
+    </div>
+    <div>
+        <h4>Your Stats:</h4>
+        <p>Highscore overall - Correct Answer Streak: {{user.correctAnswerStreak}}</p>
+        <p>Highscore today - Correct Answer Streak: </p>
+    </div>
+    
+</div>
+<h4>Your cards: </h4>
+<div id="createdCards">
+    {{#each cards}}
+    <div id="singleCard">
+        <h4><a href="/choicecard/{{this._id}}">{{questionTitle}}</a></h4>
+        <p>{{questionDescription}}</p>
+        <small>Upvotes: {{upvotes}} - Errorvotes: {{errorvotes}}</small>
+    </div>
+    {{/each}}
+</div>
