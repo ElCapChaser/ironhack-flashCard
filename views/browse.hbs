@@ -27,7 +27,8 @@
   <h4>Results</h4>
 
     {{#each flashcards}}
-    <button><a href="/choicecard/{{this._id}}">{{this.questionTitle}}</a></button>
+    <button><a href="/choicecard/{{this._id}}">{{this.questionTitle}}</a><br>
+    <small>{{this.topic}}</small></button>
             {{/each}}
 
 </div>

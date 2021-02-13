@@ -65,7 +65,9 @@ router.get('/:id', (req, res, next) => {
                 isCreator = true;
             }
             //lookup all comments matching to the choicecard ID and populating the creator
-            return Comment.find({ choicecard: id }).sort({updateDate: -1}).populate('creator', 'name');
+            return Comment.find({ choicecard: id })
+                .sort({ updateDate: -1 })
+                .populate('creator', 'name');
         })
         .then((comment) => {
             res.render('choicecards/single', {
@@ -86,8 +88,6 @@ router.post('/:id', (req, res, next) => {
         // check if user has answered this card before
         Response.find({ user: req.user._id, card: req.params.id })
             .then((existingResponse) => {
-                console.log('existing response');
-                console.log(existingResponse);
                 if (existingResponse.length > 0) {
                     // if value is not null
                     console.log('user already answered this card - ');
@@ -108,8 +108,10 @@ router.post('/:id', (req, res, next) => {
                 console.log(response);
                 let feedbackMsg;
                 if (req.body.answer === 'true') {
+                    req.user.correctAnswerStreak += 1;
                     feedbackMsg = 'That is correct! Great Job!';
                 } else {
+                    req.user.correctAnswerStreak = 0;
                     feedbackMsg = "Sorry, that wasn't right, please try again! ";
                 }
                 res.render('choicecards/feedback', {

@@ -9,12 +9,15 @@ nav {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-image: url('./../public/images/flashcards.jpg');
 }
 
 #homeTitle {
     font-size: 3.5em;
+    letter-spacing: 3px;
     text-transform: uppercase;
     padding: 2em;
+    margin-top: 1em;
 }
 
 #homeSubtitle {
@@ -26,7 +29,7 @@ nav {
     display: flex;
     justify-content: space-between;
     button {
-        padding: 0.3em;
+        padding: 0.5em 0.8em;
         font-weight: 700;
         background-color: $grey;
         border: 1px solid black;
