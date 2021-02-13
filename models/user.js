@@ -33,6 +33,10 @@ const schema = new mongoose.Schema({
     correctAnswerStreak: {
         type: Number,
         default: 0
+    },
+    highscore: {
+        type: Number,
+        default: 0
     }
 }, { timestamps: true });
 

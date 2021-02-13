@@ -29,7 +29,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(serveFavicon(path.join(__dirname, 'public/images', 'favicon.ico')));
-app.use(express.static('public/images/flashcards.jpg'));
+app.use(express.static(path.join(__dirname, 'public/images')));
 
 app.use(
     sassMiddleware({
