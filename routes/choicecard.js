@@ -2,6 +2,7 @@ const express = require('express');
 const Choicecard = require('./../models/choicecard');
 const Response = require('./../models/response');
 const Comment = require('./../models/comment');
+const User = require('./../models/user');
 const nodemailer = require('./../nodemailer');
 
 //const routeGuardMiddleware = require('./../middleware/route-guard');
@@ -109,16 +110,40 @@ router.post('/:id', (req, res, next) => {
                 let feedbackMsg;
                 if (req.body.answer === 'true') {
                     feedbackMsg = 'That is correct! Great Job!';
+                    console.log(req.user._id);
+                    User.findByIdAndUpdate(
+                        req.user._id, {
+                            $inc: {
+                                correctAnswerStreak: 1
+                            }
+                        }, { new: true }
+                    ).then((user) => {
+                        res.render('choicecards/feedback', {
+                            user: user,
+                            feedbackMsg: feedbackMsg,
+                            id: req.params.id
+                        });
+                    });
                 } else {
                     feedbackMsg = "Sorry, that wasn't right, please try again! ";
+                    const highscore = req.user.correctAnswerStreak;
+                    User.findByIdAndUpdate(
+                            req.user._id, {
+                                correctAnswerStreak: 0,
+                                highscore: highscore
+                            }, { new: true }
+                        )
+                        .then((user) => {
+                            res.render('choicecards/feedback', {
+                                user: user,
+                                feedbackMsg: feedbackMsg,
+                                id: req.params.id
+                            });
+                        })
+                        .catch((error) => {
+                            next(error);
+                        });
                 }
-                res.render('choicecards/feedback', {
-                    feedbackMsg: feedbackMsg,
-                    id: req.params.id
-                });
-            })
-            .catch((error) => {
-                next(error);
             });
     });
 });
@@ -188,46 +213,4 @@ router.post('/:id/delete', (req, res, next) => {
         });
 });
 
-<<<<<<< HEAD
-//upvote choicecard
-router.post('/:id/upvote', (req, res, next) => {
-    const id = req.params.id;
-    Choicecard.findByIdAndUpdate(id, {
-            $inc: {
-                upvotes: 1
-            }
-        })
-        .then(() => {
-            res.redirect(`/choicecard/${id}`);
-        })
-        .catch((error) => {
-            next(error);
-        });
-});
-
-//errrorvote choicecard
-router.post('/:id/errorvote', (req, res, next) => {
-    const id = req.params.id;
-    Choicecard.findByIdAndUpdate(id, {
-            $inc: {
-                errorvotes: 1
-            }
-        })
-        .populate('creator')
-        .then((choicecard) => {
-            if (choicecard.errorvotes >= 3) {
-                console.log(choicecard);
-                nodemailer.errorEmail(choicecard.creator.email);
-            }
-            console.log(choicecard);
-            res.redirect(`/choicecard/${id}`);
-        })
-        .catch((error) => {
-            next(error);
-        });
-});
-
 module.exports = router;
-=======
-module.exports = router;
->>>>>>> 7a0d5f8696b6f3ed5aa15c4913379bbe492c311d
