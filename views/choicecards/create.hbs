@@ -1,26 +1,52 @@
+<div id="createCard">
 <h1>Create a Choicecard</h1>
 
 <form method="POST" >
-  <label for="question-title">Title</label>
+  <div>
+ <p>
+    <label for="question-title">Title</label>
   <input type="text" id="question-title" name="title" placeholder="Title" required/>
-
-  <label for="question-description">Description:</label>
+  </p>
+  
+  <p>
+    <label for="question-description">Description:</label>
   <input type="text" id="question-description" name="description" placeholder="Add more detail..." />
- 
-<p>You must provide 4 possible solutions, one of which is correct. Remember to put the correct one first! </p>
-  <label for="correctAnswer">Correct Answer:</label>
+  </p>
+  </div>
+
+  <div>
+    
+<h4>Provide 4 possible solutions, one of which is correct. Remember to put the correct one first! </h4>
+<p>
+   <label for="correctAnswer">Correct Answer:</label>
   <input type="text" id="correctAnswer" name="correctAnswer" placeholder="The correct answer..." required/>
-  <p>And now the other, incorrect, possibilities:</p>
-  <label for="answer2">Answer 2:</label>
+</p>
+ 
+  <h4>Incorrect Answers:</h4>
+
+  <p>
+    <label for="answer2">Answer 2:</label>
   <input type="text" id="answer2" name="answer2" placeholder="Second possible answer..." required/>
-  <label for="answer3">Answer 3:</label>
- <input type="text" id="answer3" name="answer3" placeholder="Third possible answer..." required/> 4
- <label for="answer4">Answer 4:</label>
+  </p>
+  <p>
+     <label for="answer3">Answer 3:</label>
+ <input type="text" id="answer3" name="answer3" placeholder="Third possible answer..." required/>
+  </p>
+  <p>
+    <label for="answer4">Answer 4:</label>
  <input type="text" id="answer4" name="answer4" placeholder="Fourth possible answer..." required/>  
+  </p>
  
 
+  </div>
+ 
 
-  <label for="topic">Main Topic: </label>
+  
+ 
+ <div id="metaInput">
+
+   <p>
+     <label for="topic">Main Topic: </label>
   <select name="topic" id="question-topic" required>
     <option value="" selected disabled>Topic</option> <!-- Display empty placeholder value-->
     <option value="Javascript - Syntax">Javascript - Syntax</option>
@@ -34,20 +60,22 @@
     <option value="Templating">Templating</option>
     <option value="GIT">GIT</option>
   </select>
-
-
-<label for="module">Question relates to Module...: </label>
+   
+  <label for="module">Module:</label>
   <select name="module" id="module" required>
     <option value="" selected disabled>Module</option> <!-- Display empty placeholder value-->
     <option value="Module 1">Module 1</option>
     <option value="Module 2">Module 2</option>
     <option value="Module 3">Module 3</option>
   </select>
+</p>
 
-          
-
-  <label for="question-difficulty">Rate the difficulty of your quetstion on a scale of 1 through 10: </label>
+<p>
+  <label for="question-difficulty">Difficulty on a scale of 1 through 10: </label>
   <input type="range" min="1" max="10" step="1" id="question-difficulty" name="difficulty"  required>
-
+</p>
+ </div>
+  
   <button type="submit">Submit</button>
 </form>
+</div>

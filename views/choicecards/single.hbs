@@ -32,7 +32,9 @@
            name="answer" value="{{choicecard.answers.[3].correct}}">
          <label for="answer4">{{choicecard.answers.[3].message}}</label>
     </p>
+    {{#if user}}
     <button id="checkAnswer">Check Answer</button>
+    {{/if}}
 </form>
 
 </div>

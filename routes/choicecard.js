@@ -50,8 +50,18 @@ router.get('/:id', (req, res, next) => {
     Choicecard.findById(id)
         .then((card) => {
             choicecard = card;
+            // shuffle answers
+            for (let i = choicecard.answers.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * i);
+                [choicecard.answers[j], choicecard.answers[i]] = [
+                    choicecard.answers[i],
+                    choicecard.answers[j]
+                ];
+            }
+            //console.log(choicecard.answers);
             //Checking if the authenticated user is also owner of the choicecard
-            if (req.user._id.equals(choicecard.creator._id)) {
+            // and if choicecard has a creator to avoid error
+            if (choicecard.creator && req.user._id.equals(choicecard.creator._id)) {
                 isCreator = true;
             }
             //lookup all comments matching to the choicecard ID and populating the creator
@@ -201,3 +211,14 @@ router.post('/:id/errorvote', (req, res, next) => {
 });
 
 module.exports = router;
+
+//shuffle -- To shuffle an array a of n elements (indices 0..n-1):
+// for i from n−1 downto 1 do
+// j ← random integer such that 0 ≤ j ≤ i
+// exchange a[j] and a[i]
+/*
+for(let i=answers.length-1; i>0; i--){
+    let j = Math.random()*i
+    answers[j], answers[i] = answers[i], answers[j]
+} 
+*/
