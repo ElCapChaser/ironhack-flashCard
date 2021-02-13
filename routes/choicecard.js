@@ -188,6 +188,7 @@ router.post('/:id/delete', (req, res, next) => {
         });
 });
 
+<<<<<<< HEAD
 //upvote choicecard
 router.post('/:id/upvote', (req, res, next) => {
     const id = req.params.id;
@@ -227,3 +228,6 @@ router.post('/:id/errorvote', (req, res, next) => {
 });
 
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> 7a0d5f8696b6f3ed5aa15c4913379bbe492c311d
