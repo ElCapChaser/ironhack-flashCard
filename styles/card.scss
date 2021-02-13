@@ -1,8 +1,16 @@
 $grey: hsl(0, 0, 90%);
+$pistachio: #e4fde1;
+$darkPistachio: #8acb88;
+$steelTeal: #648381;
+$darkGrey: #575761;
+$mustardYellow: #ebc379;
+$redBrown: #aa4535;
 #browse {
     margin-top: 2em;
     padding-bottom: 1em;
     text-align: center;
+    letter-spacing: 2px;
+    font-weight: 400;
     border-bottom: 1px solid $grey;
     h2 {
         padding: 1em;
@@ -29,6 +37,8 @@ $grey: hsl(0, 0, 90%);
 #displayFlashcards {
     margin-top: 2em;
     text-align: center;
+    letter-spacing: 2px;
+    font-weight: 400;
     h4 {
         font-size: 1.5em;
         padding: 1em;
@@ -50,6 +60,8 @@ $grey: hsl(0, 0, 90%);
     box-shadow: -2px 2px 2px 2px lightgray;
     margin: 2em;
     padding: 1em;
+    letter-spacing: 2px;
+    font-weight: 400;
     h1 {
         padding: 2em;
     }
@@ -73,6 +85,8 @@ $grey: hsl(0, 0, 90%);
     flex-direction: column;
     align-items: center;
     font-size: 1.3em;
+    letter-spacing: 2px;
+    font-weight: 400;
     form {
         display: flex;
         p {
@@ -115,22 +129,29 @@ $grey: hsl(0, 0, 90%);
     margin: 2em;
     padding: 1em;
     font-weight: 500;
+    letter-spacing: 2px;
+    font-weight: 400;
+    background-image: url('/flashcards2.jpg');
+    background-blend-mode: lighten;
     h1 {
         margin: 1em;
-        background-color: rgb(197, 248, 218);
         padding: 1em;
+        background-color: $pistachio;
+        font-weight: 500;
+        box-shadow: -2px 2px 2px 2px lightgray;
     }
     div {
         padding: 1em;
         border: 1px solid gray;
         margin: 2em;
+        background-color: white;
     }
     input {
         width: 30em;
         padding: 0.5em;
     }
     label {
-        font-weight: 700;
+        font-weight: 500;
     }
     p {
         display: flex;
@@ -141,15 +162,15 @@ $grey: hsl(0, 0, 90%);
     }
     h4 {
         text-align: center;
-        background-color: rgb(231, 166, 166);
+        background-color: $steelTeal;
     }
     .metaInput {
         font-size: 0.9em;
     }
     button {
         padding: 0.5em;
-        font-weight: 700;
-        background-color: rgb(213, 242, 243);
+        font-weight: 500;
+        background-color: #8acb88;
         box-shadow: -1px 1px 1px 1px lightgray;
     }
 }

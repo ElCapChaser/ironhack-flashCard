@@ -1,37 +1,50 @@
 $grey: hsl(0, 0, 90%);
-nav {
-    font-weight: 700;
-    border-bottom: 1px solid darkslategrey;
-}
-
+$pistachio: #e4fde1;
+$darkPistachio: #8acb88;
+$steelTeal: #648381;
+$darkGrey: #575761;
+$mustardYellow: #ffbf46;
+$redBrown: #aa4535;
 #welcome {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url('./../public/images/flashcards.jpg');
+    background-image: url('/flashcards.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 5em;
+    margin: 0;
+    box-shadow: -5px 5px 5px 5px $grey;
 }
 
 #homeTitle {
-    font-size: 3.5em;
-    letter-spacing: 3px;
+    font-size: 5em;
+    padding: 0;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: antiquewhite;
+    font-weight: 900;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    padding: 2em;
     margin-top: 1em;
 }
 
 #homeSubtitle {
-    padding-bottom: 2em;
-    font-size: 2em;
+    margin-bottom: 2em;
+    padding: 0 0.3em;
+    font-size: 2.5em;
+    background-color: antiquewhite;
 }
 
 #homeButtons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    margin-top: 2em;
     button {
-        padding: 0.5em 0.8em;
-        font-weight: 700;
-        background-color: $grey;
-        border: 1px solid black;
+        background-color: $pistachio;
+        color: $darkGrey;
+        font-weight: 600;
+        letter-spacing: 2px;
+        box-shadow: -2px 2px 2px 2px lightgrey;
     }
 }

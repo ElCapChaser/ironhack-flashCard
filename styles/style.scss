@@ -7,6 +7,12 @@
 // Arial,
 // sans-serif;
 $grey: hsl(0, 0, 90%);
+$pistachio: #e4fde1;
+$darkPistachio: #8acb88;
+$steelTeal: #648381;
+$darkGrey: #575761;
+$mustardYellow: #ebc379;
+$redBrown: #aa4535;
 * {
     &,
     &:before,
@@ -16,12 +22,11 @@ $grey: hsl(0, 0, 90%);
 }
 
 body {
-    max-width: 52em;
     padding: 0 1em;
     margin: 0 auto;
     margin-bottom: 1em;
-    font-family: 'Lato', sans-serif; //font-family: sans-serif;
-    //font-family: $font-sans;
+    font-family: 'Poppins', sans-serif;
+    max-width: 65em;
     line-height: 2;
 }
 
@@ -34,7 +39,12 @@ nav {
     display: flex;
     a,
     button {
-        padding: 1em 0;
+        background-color: #648381;
+        color: $pistachio;
+        box-shadow: -2px 2px 2px 2px lightgrey;
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+        padding: 0.2em;
         border: 0;
         &:not(:last-child) {
             margin-right: 1em;
