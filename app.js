@@ -19,6 +19,7 @@ const baseRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
 const choicecardRouter = require('./routes/choicecard');
 const commentsRouter = require('./routes/newComment');
+const votesRouter = require('./routes/votes');
 
 const app = express();
 
@@ -64,6 +65,7 @@ app.use(bindUserToViewLocals);
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/choicecard', choicecardRouter);
+app.use('/choicecard', votesRouter);
 app.use('/', commentsRouter);
 
 // Catch missing routes and forward to error handler

@@ -137,3 +137,21 @@ When dispalying a single flashcard we should display the relevant comments
 Iterate over all cards
 Show the cards depending on the algorithm
 Update the value
+
+# voting logic
+
+User has not voted yet
+-Button shows white
+-Once user clicks, button turns blue
+-Total votes for the resource goes up
+-User can no longer vote on this resource. See user has voted
+
+User has voted
+-Button is blue to show that it has been voted on.
+-When user clicks button its vote gets removed and button turns white again.
+-Total votes goes down for resource
+-User can vote again
+
+Votes model - user id, flashcard id, vote yes / no
+
+total error votes = sum of all votes on the flashcard. 
