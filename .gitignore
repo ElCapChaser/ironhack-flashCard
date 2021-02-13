@@ -40,3 +40,7 @@ node_modules
 
 # ignore the scss files
 *.scss
+
+#ignore the supermemo stuff
+.lib
+.superMemo.js

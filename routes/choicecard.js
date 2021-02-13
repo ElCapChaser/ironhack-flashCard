@@ -47,17 +47,15 @@ router.get('/:id', (req, res, next) => {
     let isCreator = false;
     let choicecard; //aux variable
     const id = req.params.id;
-    console.log(id);
     Choicecard.findById(id)
         .then((card) => {
-            console.log('card', card);
             choicecard = card;
             //Checking if the authenticated user is also owner of the choicecard
             if (req.user._id.equals(choicecard.creator._id)) {
                 isCreator = true;
             }
             //lookup all comments matching to the choicecard ID and populating the creator
-            return Comment.find({ choicecard: id }).populate('creator', 'name');
+            return Comment.find({ choicecard: id }).sort({updateDate: -1}).populate('creator', 'name');
         })
         .then((comment) => {
             res.render('choicecards/single', {
@@ -73,9 +71,7 @@ router.get('/:id', (req, res, next) => {
 
 // check if correct Answer was given to choicecard:
 router.post('/:id', (req, res, next) => {
-    console.log(req.body);
     Choicecard.findById(req.params.id).then((choicecard) => {
-        //console.log(choicecard);
         console.log(req.user._id);
         // check if user has answered this card before
         Response.find({ user: req.user._id, card: req.params.id })
