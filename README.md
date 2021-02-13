@@ -127,9 +127,13 @@ POST - /user/login - User profile - Display user profile
 
 POST - /flashcard/:id/comment - Create comment - Add comment to database
 
-
-
 ### Comment response model
 
 POST Comment is saved with flashcard ID
 When dispalying a single flashcard we should display the relevant comments
+
+# SUPERMEMO LOGIC
+
+Iterate over all cards
+Show the cards depending on the algorithm
+Update the value

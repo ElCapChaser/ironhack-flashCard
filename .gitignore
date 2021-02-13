@@ -39,4 +39,9 @@ node_modules
 .next
 
 # ignore the scss files
+
 *.css
+
+#ignore the supermemo stuff
+.lib
+.superMemo.js
