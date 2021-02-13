@@ -5,6 +5,9 @@ const { Router } = require('express');
 const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
 
+const email = require('./../nodemailer');
+const nodemailer = require('./../nodemailer');
+
 const router = new Router();
 
 router.get('/sign-up', (req, res, next) => {
@@ -16,14 +19,10 @@ router.post(
   uploadMiddleware.single('profilePicture'),
   (req, res, next) => {
     //Store the profile picture path if entered, otherwise leave undefined
-    console.log(req.file);
     const picture = req.file ? req.file.path : undefined;
-    console.log(picture);
-    console.log(req.body);
     const { name, email, password, fullTime, startDate } = req.body;
     User.findOne({ email: email })
       .then((user) => {
-        console.log(user);
         if (user) {
           res.render('sign-up', {
             errorMessage: 'Wooppss!! A user already exists with this email'
@@ -44,6 +43,7 @@ router.post(
             })
             .then((user) => {
               req.session.userId = user._id;
+              nodemailer.welcomeEmail(user.email);
               res.redirect('/private');
             })
             .catch((error) => next(error));
