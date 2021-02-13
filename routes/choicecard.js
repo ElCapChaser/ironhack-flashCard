@@ -164,27 +164,6 @@ router.get('/:id/update', async (req, res, next) => {
         break;
       }
     }
-    res.render('choicecards/feedback', {
-      feedbackMsg: feedbackMsg,
-      id: req.params.id
-    });
-  } catch (error) {
-    next(error);
-  }
-});
-
-//update choicecard -- ASYNC AWAIT
-router.get('/:id/update', async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const choicecard = await Choicecard.findById(id);
-    let correctAnswer;
-    for (let ans of choicecard.answers) {
-      if (ans.correct) {
-        correctAnswer = ans.message;
-        break;
-      }
-    }
     res.render('choicecards/update', {
       choicecard: choicecard,
       correctAnswer: correctAnswer
