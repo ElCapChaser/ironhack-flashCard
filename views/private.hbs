@@ -5,13 +5,14 @@
 <img src="{{user.profilePicture}}" alt="awesome profile pic">
     </div>
     <div id="stats">
+        <img src="/growth.svg" alt="stats" height="120">
         <h4>Your Stats:</h4>
-        <p>Highscore overall - Correct Answer Streak: {{user.highscore}}</p>
-        <p>Current Correct Answer Streak:{{user.correctAnswerStreak}} </p>
+        <p>Highscore: {{user.highscore}}</p>
+        <p>Current Correct Answer Streak: {{user.correctAnswerStreak}} </p>
     </div>
     
 </div>
-<h4>Your cards: </h4>
+<h4 id="yourCards">Your cards: </h4>
 <div id="createdCards">
     {{#each cards}}
     <div id="singleCard">
