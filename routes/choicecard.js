@@ -62,9 +62,13 @@ router.get('/:id', (req, res, next) => {
             }
             //Checking if the authenticated user is also owner of the choicecard
             // and if choicecard has a creator to avoid error
-            if (choicecard.creator && req.user._id.equals(choicecard.creator._id)) {
-                isCreator = true;
+            // check if there is a user signed in to avoid error
+            if (req.user) {
+                if (choicecard.creator && req.user._id.equals(choicecard.creator._id)) {
+                    isCreator = true;
+                }
             }
+
             //lookup all comments matching to the choicecard ID and populating the creator
             return Comment.find({ choicecard: id })
                 .sort({ updateDate: -1 })
@@ -84,8 +88,9 @@ router.get('/:id', (req, res, next) => {
 
 // check if correct Answer was given to choicecard:
 router.post('/:id', (req, res, next) => {
+    let topic;
     Choicecard.findById(req.params.id).then((choicecard) => {
-        console.log(req.user._id);
+        topic = choicecard.topic;
         // check if user has answered this card before
         Response.find({ user: req.user._id, card: req.params.id })
             .then((existingResponse) => {
@@ -105,8 +110,7 @@ router.post('/:id', (req, res, next) => {
                     });
                 }
             })
-            .then((response) => {
-                console.log(response);
+            .then(() => {
                 let feedbackMsg;
                 if (req.body.answer === 'true') {
                     feedbackMsg = 'That is correct! Great Job!';
@@ -121,7 +125,8 @@ router.post('/:id', (req, res, next) => {
                         res.render('choicecards/feedback', {
                             user: user,
                             feedbackMsg: feedbackMsg,
-                            id: req.params.id
+                            id: req.params.id,
+                            topic: topic
                         });
                     });
                 } else {
@@ -137,7 +142,8 @@ router.post('/:id', (req, res, next) => {
                             res.render('choicecards/feedback', {
                                 user: user,
                                 feedbackMsg: feedbackMsg,
-                                id: req.params.id
+                                id: req.params.id,
+                                topic: topic
                             });
                         })
                         .catch((error) => {

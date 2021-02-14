@@ -1,8 +1,11 @@
 <h1 id="feedbackMsg">{{feedbackMsg}}</h1>
 <h5>Correct Answer Streak: {{user.correctAnswerStreak}}</h5>
 <div id="feedbackPageButtons">
-    <button><a href="/randomchoicecard">Next</a></button>
-<button><a href="/choicecard/{{id}}">
-Try again</a></button>
+
+<form action="/browsenext/{{topic}}" method="POST">
+<button>Next</button>
+</form>
+    
+
 <button>Remind me!</button>
 </div>
