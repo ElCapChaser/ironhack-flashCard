@@ -1,63 +1,67 @@
-<div id="card">
-<h1>{{choicecard.questionTitle}}</h1>
-<small> <span id="topic">{{choicecard.topic}}</span>  <span id="choicecard-upvotes">Upvotes: {{choicecard.upvotes}}</span><span id="choicecard-errorvotes">Errorvotes: {{choicecard.errorvotes}}</span></small>
-{{#if choicecard.questionDescription}}
-<p>{{choicecard.questionDescription}}</p>
-{{/if}}
+<div id="single">
 
-</div>
+<div class="cardDisplay">
+    <div>
+         <h1>{{choicecard.questionTitle}}</h1>
+    <small> <span id="topic">{{choicecard.topic}}</span>  <span id="choicecard-upvotes">Upvotes: {{choicecard.upvotes}}</span><span id="choicecard-errorvotes">Errorvotes: {{choicecard.errorvotes}}</span></small>
+    {{#if choicecard.questionDescription}}
+    <p>{{choicecard.questionDescription}}</p>
+    {{/if}}
+    <img src="/mental.svg" alt="brain" height="110">
+    </div>
+   
+
 
 
 <div id="selectAnswer">
   <h4>Please select the correct answer:</h4>
-<form method="POST" >
-    <p>
+    <form method="POST" >
+        <p>
         <input type="radio" id="answer1" 
         name="answer" value="{{choicecard.answers.[0].correct}}">
         <label for="answer1">{{choicecard.answers.[0].message}}</label>
-    </p>
-    <p>
+        </p>
+        <p>
         <input type="radio" id="answer2"
            name="answer" value="{{choicecard.answers.[1].correct}}">
         <label for="answer2">{{choicecard.answers.[1].message}}</label>
-    </p>
-    <p>
+        </p>
+        <p>
         <input type="radio" id="answer3"
          name="answer" value="{{choicecard.answers.[2].correct}}">
         <label for="answer3">{{choicecard.answers.[2].message}}</label>
-    </p>
-    
-    <p>
+        </p>
+        <p>
         <input type="radio" id="answer4"
            name="answer" value="{{choicecard.answers.[3].correct}}">
          <label for="answer4">{{choicecard.answers.[3].message}}</label>
-    </p>
-    {{#if user}}
-    <button id="checkAnswer">Check Answer</button>
-    {{else}}
-    <button><a href="/authentication/sign-in">Login to answer this card</a></button>
-    {{/if}}
-</form>
-
+        </p>
+        {{#if user}}
+        <button id="checkAnswer">Check Answer</button>
+        {{else}}
+        <button><a href="/authentication/sign-in">Login to answer this card</a></button>
+        {{/if}}
+        </form>
+    </div>
 </div>
 
-
-{{!-- <div>{{#each comments}}
-    <p>{{this}}</p>
-    {{/each}}
-</div> --}}
 
 <div id="editButtons">
-{{#if user}}
-<form action="/choicecard/{{choicecard._id}}/upvote" method="POST"><button>Upvote!</button></form>
-<form action="/choicecard/{{choicecard._id}}/errorvote" method="POST"><button>Flag an Error!</button></form>
-<button><a href="/choicecard/{{choicecard._id}}/delete">Delete this flashcard</a></button>
-<button><a href="/choicecard/{{choicecard._id}}/update">Edit this flashcard</a></button>
-{{/if}}
-
+    {{#if user}}
+    <form action="/choicecard/{{choicecard._id}}/upvote" method="POST"><button>Upvote!</button></form>
+    <form action="/choicecard/{{choicecard._id}}/errorvote" method="POST"><button>Flag an Error!</button></form>
+    <button><a href="/choicecard/{{choicecard._id}}/delete">Delete this flashcard</a></button>
+    <button><a href="/choicecard/{{choicecard._id}}/update">Edit this flashcard</a></button>
+    {{/if}}
 </div>
 
-{{> comments}}
+<div id="comments">
+    {{> comments}}
+</div>
+
+
+
+</div>
 
 
 <script>

@@ -1,7 +1,9 @@
 <div id="browse">
-<h2>Browse {{cardtype}}</h2>
+  
+  <h2>Browse {{cardtype}}</h2>
+<div>
+<img src="/research.svg" alt="browseIcon" height="150">
 <form method="POST">
-    
   <label for="topic">Browse by TOPIC: </label>
   <select name="topic" id="question-topic" required>
     <option value="" selected disabled>Topic</option> <!-- Display empty placeholder value-->
@@ -18,18 +20,16 @@
   </select>
 
 <button>Browse</button>
-
-
 </form>
 </div>
-
+<h4>Results</h4>
 <div id="displayFlashcards">
-  <h4>Results</h4>
-
     {{#each flashcards}}
-    <button><a href="/choicecard/{{this._id}}">{{this.questionTitle}}</a><br>
+    <button class="card"><a href="/choicecard/{{this._id}}">{{this.questionTitle}}</a><br>
     <small>{{this.topic}}</small></button>
             {{/each}}
+</div>
 
 </div>
+
 

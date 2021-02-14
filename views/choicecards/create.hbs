@@ -1,29 +1,27 @@
 <div class="createCard">
 <h1>Create a Choicecard</h1>
-
+<div id="upper">
 <form method="POST" >
-  <div>
- <p>
+
+    <div class="halfCard">
+      <p>
     <label for="question-title">Title</label>
   <input type="text" id="question-title" name="title" placeholder="Title" required/>
-  </p>
-  
+  </p> 
   <p>
     <label for="question-description">Description:</label>
   <input type="text" id="question-description" name="description" placeholder="Add more detail..." />
   </p>
-  </div>
+    </div>
 
-  <div>
-    
+
+  <div class="halfCard">
 <h4>Provide 4 possible solutions, one of which is correct. Remember to put the correct one first! </h4>
 <p>
    <label for="correctAnswer">Correct Answer:</label>
   <input type="text" id="correctAnswer" name="correctAnswer" placeholder="The correct answer..." required/>
 </p>
- 
   <h4>Incorrect Answers:</h4>
-
   <p>
     <label for="answer2">Answer 2:</label>
   <input type="text" id="answer2" name="answer2" placeholder="Second possible answer..." required/>
@@ -36,11 +34,10 @@
     <label for="answer4">Answer 4:</label>
  <input type="text" id="answer4" name="answer4" placeholder="Fourth possible answer..." required/>  
   </p>
- 
 
   </div>
  
-
+</div>
   
  
  <div class="metaInput">
