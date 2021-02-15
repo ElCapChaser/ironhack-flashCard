@@ -12,8 +12,10 @@
     </div>
     
 </div>
+ {{#if cards}}
 <h4 id="yourCards">Your cards: </h4>
 <div id="createdCards">
+   
     {{#each cards}}
     <div id="singleCard">
         <h4><a href="/choicecard/{{this._id}}">{{questionTitle}}</a></h4>
@@ -21,4 +23,6 @@
         <small>Upvotes: {{upvotes}} - Errorvotes: {{errorvotes}}</small>
     </div>
     {{/each}}
+
 </div>
+{{/if}}

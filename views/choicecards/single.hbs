@@ -3,7 +3,7 @@
 <div class="cardDisplay">
     <div>
          <h1>{{choicecard.questionTitle}}</h1>
-    <small> <span id="topic">{{choicecard.topic}}</span>  <span id="choicecard-upvotes">Upvotes: {{choicecard.upvotes}}</span><span id="choicecard-errorvotes">Errorvotes: {{choicecard.errorvotes}}</span></small>
+    <small> <span id="topic">{{choicecard.topic}} | </span>  <span id="choicecard-upvotes">Upvotes: {{choicecard.upvotes}}  |  </span><span id="choicecard-errorvotes">Errorvotes: {{choicecard.errorvotes}}</span></small>
     {{#if choicecard.questionDescription}}
     <p>{{choicecard.questionDescription}}</p>
     {{/if}}
@@ -50,10 +50,13 @@
     {{#if user}}
     <form action="/choicecard/{{choicecard._id}}/upvote" method="POST"><button>Upvote!</button></form>
     <form action="/choicecard/{{choicecard._id}}/errorvote" method="POST"><button>Flag an Error!</button></form>
+    {{#if iscreator}}
     <button><a href="/choicecard/{{choicecard._id}}/delete">Delete this flashcard</a></button>
     <button><a href="/choicecard/{{choicecard._id}}/update">Edit this flashcard</a></button>
     {{/if}}
+    {{/if}}
 </div>
+
 
 <div id="comments">
     {{> comments}}

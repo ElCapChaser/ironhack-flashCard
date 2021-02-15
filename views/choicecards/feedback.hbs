@@ -1,11 +1,17 @@
+
+<div id="feedbackPage">
 <h1 id="feedbackMsg">{{feedbackMsg}}</h1>
-<h5>Correct Answer Streak: {{user.correctAnswerStreak}}</h5>
-<div id="feedbackPageButtons">
+<div>
+    <h4>Correct Answer Streak: {{user.correctAnswerStreak}}</h4>
+    <div id="feedbackPageButtons">
 
-<form action="/browsenext/{{topic}}" method="POST">
-<button>Next</button>
-</form>
-    
+        <form action="/browsenext/{{topic}}" method="POST">
+        <button>Next</button>
+        </form>
 
-<button>Remind me!</button>
+        <button>Remind me!</button>
+    </div>
+
+</div>
+
 </div>

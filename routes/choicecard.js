@@ -155,25 +155,25 @@ router.post('/:id', (req, res, next) => {
 });
 
 //update choicecard -- ASYNC AWAIT
-router.get('/:id/update', async(req, res, next) => {
-    try {
-        const id = req.params.id;
-        const choicecard = await Choicecard.findById(id);
-        let correctAnswer;
-        for (let ans of choicecard.answers) {
-            if (ans.correct) {
-                correctAnswer = ans.message;
-                break;
-            }
-        }
-        res.render('choicecards/feedback', {
-            feedbackMsg: feedbackMsg,
-            id: req.params.id
-        });
-    } catch (error) {
-        next(error);
-    }
-});
+// router.get('/:id/update', async(req, res, next) => {
+//     try {
+//         const id = req.params.id;
+//         const choicecard = await Choicecard.findById(id);
+//         let correctAnswer;
+//         for (let ans of choicecard.answers) {
+//             if (ans.correct) {
+//                 correctAnswer = ans.message;
+//                 break;
+//             }
+//         }
+//         res.render('choicecards/feedback', {
+//             feedbackMsg: feedbackMsg,
+//             id: req.params.id
+//         });
+//     } catch (error) {
+//         next(error);
+//     }
+// });
 
 //update choicecard -- ASYNC AWAIT
 router.get('/:id/update', async(req, res, next) => {
@@ -181,16 +181,35 @@ router.get('/:id/update', async(req, res, next) => {
         const id = req.params.id;
         const choicecard = await Choicecard.findById(id);
         let correctAnswer;
-        for (let ans of choicecard.answers) {
-            if (ans.correct) {
-                correctAnswer = ans.message;
-                break;
+        console.log(choicecard);
+        if (req.user && choicecard.creator) {
+            console.log(req.user._id, choicecard.creator._id);
+            if (req.user._id === choicecard.creator._id) {
+                console.log('here');
+                //find which answer is correct
+                for (let ans of choicecard.answers) {
+                    if (ans.correct) {
+                        correctAnswer = ans.message;
+                        break;
+                    }
+                }
+                res.render('choicecards/update', {
+                    choicecard: choicecard,
+                    correctAnswer: correctAnswer
+                });
+                return;
+            } else {
+                console.log('err');
+                res.render('error', {
+                    message: 'You do not have permission to edit this card!'
+                });
             }
+        } else {
+            console.log('err');
+            res.render('error', {
+                message: 'You do not have permission to edit this card!'
+            });
         }
-        res.render('choicecards/update', {
-            choicecard: choicecard,
-            correctAnswer: correctAnswer
-        });
     } catch (error) {
         next(error);
     }
@@ -222,7 +241,18 @@ router.get('/:id/delete', (req, res, next) => {
     const id = req.params.id;
     Choicecard.findById(id)
         .then((choicecard) => {
-            res.render('choicecards/confirm-deletion', { choicecard: choicecard });
+            if (req.user && choicecard.creator) {
+                if (req.user._id.equals(choicecard.creator._id)) {
+                    res.render('choicecards/confirm-deletion', {
+                        choicecard: choicecard
+                    });
+                    return;
+                }
+            } else {
+                res.render('error', {
+                    message: 'You do not have permission to delete this card!'
+                });
+            }
         })
         .catch((error) => {
             next(error);
