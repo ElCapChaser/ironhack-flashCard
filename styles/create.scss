@@ -1,0 +1,45 @@
+$grey: hsl(0, 0, 90%);
+$pistachio: #e4fde1;
+$darkPistachio: #8acb88;
+$steelTeal: #648381;
+$darkGrey: #575761;
+$mustardYellow: #ebc379;
+$redBrown: #aa4535;
+#createCard {
+    color: #404047;
+    h1 {
+        font-size: 3em;
+        background-color: #8acb88;
+        margin-bottom: 2em;
+    }
+    #left {
+        text-align: center;
+        label {
+            font-size: 1.3em;
+        }
+        #metaInput {
+            margin-top: 2em;
+            label {
+                font-size: 1em;
+            }
+            select {
+                padding: 0;
+                margin-left: 1em;
+            }
+        }
+    }
+    #left,
+    #right {
+        margin-top: 1.5em;
+        flex-grow: 1;
+        max-width: 40vw;
+        input {
+            padding: 0;
+            margin-left: 1em;
+        }
+        h5 {
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+    }
+}

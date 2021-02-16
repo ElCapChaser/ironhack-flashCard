@@ -17,11 +17,13 @@
 <div id="createdCards">
    
     {{#each cards}}
-    <div id="singleCard">
-        <h4><a href="/choicecard/{{this._id}}">{{questionTitle}}</a></h4>
-        <p>{{questionDescription}}</p>
+    <a href="/choicecard/{{this._id}}">
+        <div id="singleCard">
+            <h4>{{questionTitle}}</h4>
+            <p>{{questionDescription}}</p>
         <small>Upvotes: {{upvotes}} - Errorvotes: {{errorvotes}}</small>
-    </div>
+        </div>
+    </a>
     {{/each}}
 
 </div>
