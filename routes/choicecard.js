@@ -234,6 +234,7 @@ router.get('/:id/delete', (req, res, next) => {
                     res.render('choicecards/confirm-deletion', {
                         choicecard: choicecard
                     });
+                    console.log(choicecard)
                     return;
                 }
             } else {

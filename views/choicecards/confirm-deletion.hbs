@@ -1,4 +1,12 @@
-<h1>Delete</h1>
-<p>Are you sure you want to delete? This action cannot be undone.</p>
-<br>
-<form action="" method=POST> <p><button>Yes, delete!</button></p> </form>
+<div class="profileHeader">
+    <div class="vertical">
+        <h1>Delete</h1>
+        <p>Are you sure you want to delete? This action cannot be undone.</p>
+
+    </div>
+    <br>
+    <div class="buttons">
+        <form action="/choicecard/{{choicecard._id}}"> <p><button class='greenButton'>Woopss, take me back!</button></p> </form>
+        <form action="" method=POST> <p><button class="redButton">Yes, delete!</button></p> </form>
+    </div>
+</div>
