@@ -45,7 +45,7 @@ nav {
         color: #575761;
         &:not(:last-child) {
             margin-right: 1em;
-            background-color: #eca398;
+            background-color: #d69992;
         }
         &:not(:last-child):hover {
             padding: 0.5em 1em;
@@ -102,6 +102,7 @@ button,
 button:hover {
     padding: 1em;
     font-weight: 500;
+    cursor: pointer;
 }
 
 textarea {

@@ -11,7 +11,15 @@ $redBrown: #aa4535;
     background-repeat: no-repeat;
     padding: 5em;
     h1 {
-        font-size: 6em;
+        font-size: 7em;
+        color: #26262b;
+        text-shadow: 2px 4px black;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: #e4fde1;
+    }
+    h1:hover {
+        font-size: 7.3em;
+        cursor: pointer;
     }
     p {
         display: flex;
