@@ -1,7 +1,11 @@
 
 <div id="feedbackPage">
-<h1 id="feedbackMsg">{{feedbackMsg}}</h1>
+<h1 id="feedbackMsg">{{#if correct}}That is correct! Great job! {{else}} Sorry, that is not correct. Please try again later! {{/if}}</h1>
 <div>
+    {{#if correct}}
+    {{else}}
+    <p>The correct answer is: <span>{{correctAnswer}}</span></p>
+    {{/if}}
     <h4>Correct Answer Streak: {{user.correctAnswerStreak}}</h4>
     <div id="feedbackPageButtons">
 

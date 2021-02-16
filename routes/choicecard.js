@@ -64,7 +64,10 @@ router.get('/:id', (req, res, next) => {
             // and if choicecard has a creator to avoid error
             // check if there is a user signed in to avoid error
             if (req.user) {
-                if (choicecard.creator && req.user._id.equals(choicecard.creator._id)) {
+                if (
+                    choicecard.creator._id &&
+                    req.user._id.equals(choicecard.creator._id)
+                ) {
                     isCreator = true;
                 }
             }
@@ -91,18 +94,25 @@ router.post('/:id', (req, res, next) => {
     let topic;
     Choicecard.findById(req.params.id).then((choicecard) => {
         topic = choicecard.topic;
+
+        //find correct answer to display to user later
+        let correctAnswer;
+        for (let ans of choicecard.answers) {
+            if (ans.correct) {
+                correctAnswer = ans.message;
+                break;
+            }
+        }
         // check if user has answered this card before
         Response.find({ user: req.user._id, card: req.params.id })
             .then((existingResponse) => {
                 if (existingResponse.length > 0) {
                     // if value is not null
-                    console.log('user already answered this card - ');
                     return Response.findByIdAndUpdate(existingResponse[0]._id, {
                         correct: req.body.answer
                     });
                 } else {
                     //if user has not answered this card before
-                    console.log('creating new response');
                     return Response.create({
                         correct: req.body.answer,
                         user: req.user,
@@ -111,10 +121,10 @@ router.post('/:id', (req, res, next) => {
                 }
             })
             .then(() => {
-                let feedbackMsg;
+                let correct;
                 if (req.body.answer === 'true') {
-                    feedbackMsg = 'That is correct! Great Job!';
-                    console.log(req.user._id);
+                    correct = true;
+
                     User.findByIdAndUpdate(
                         req.user._id, {
                             $inc: {
@@ -124,13 +134,14 @@ router.post('/:id', (req, res, next) => {
                     ).then((user) => {
                         res.render('choicecards/feedback', {
                             user: user,
-                            feedbackMsg: feedbackMsg,
+                            correct: correct,
                             id: req.params.id,
-                            topic: topic
+                            topic: topic,
+                            correctAnswer: correctAnswer
                         });
                     });
                 } else {
-                    feedbackMsg = "Sorry, that wasn't right, please try again! ";
+                    correct = false;
                     const highscore = req.user.correctAnswerStreak;
                     User.findByIdAndUpdate(
                             req.user._id, {
@@ -141,9 +152,10 @@ router.post('/:id', (req, res, next) => {
                         .then((user) => {
                             res.render('choicecards/feedback', {
                                 user: user,
-                                feedbackMsg: feedbackMsg,
+                                correct: correct,
                                 id: req.params.id,
-                                topic: topic
+                                topic: topic,
+                                correctAnswer: correctAnswer
                             });
                         })
                         .catch((error) => {
@@ -154,38 +166,15 @@ router.post('/:id', (req, res, next) => {
     });
 });
 
-//update choicecard -- ASYNC 
-// router.get('/:id/update', async(req, res, next) => {
-//     try {
-//         const id = req.params.id;
-//         const choicecard = await Choicecard.findById(id);
-//         let correctAnswer;
-//         for (let ans of choicecard.answers) {
-//             if (ans.correct) {
-//                 correctAnswer = ans.message;
-//                 break;
-//             }
-//         }
-//         res.render('choicecards/feedback', {
-//             feedbackMsg: feedbackMsg,
-//             id: req.params.id
-//         });
-//     } catch (error) {
-//         next(error);
-//     }
-// });
-
 //update choicecard -- ASYNC AWAIT
 router.get('/:id/update', async(req, res, next) => {
     try {
         const id = req.params.id;
         const choicecard = await Choicecard.findById(id);
-        let correctAnswer;
-        console.log(choicecard);
+        let correctAnswer; //aux varaiable
+
         if (req.user && choicecard.creator) {
-            console.log(req.user._id, choicecard.creator._id);
-            if (req.user._id === choicecard.creator._id) {
-                console.log('here');
+            if (req.user._id.equals(choicecard.creator._id)) {
                 //find which answer is correct
                 for (let ans of choicecard.answers) {
                     if (ans.correct) {
@@ -199,7 +188,6 @@ router.get('/:id/update', async(req, res, next) => {
                 });
                 return;
             } else {
-                console.log('err');
                 res.render('error', {
                     message: 'You do not have permission to edit this card!'
                 });
