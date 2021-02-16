@@ -1,81 +1,72 @@
-<div class="createCard">
-<h1>Create a Choicecard</h1>
+<div class="cardDisplay" id="createCard">
 
-<form method="POST" >
-  <div>
- <p>
-    <label for="question-title">Title</label>
-  <input type="text" id="question-title" name="title" placeholder="Title" required/>
-  </p>
-  
-  <p>
-    <label for="question-description">Description:</label>
-  <input type="text" id="question-description" name="description" placeholder="Add more detail..." />
-  </p>
-  </div>
+<div id="left">
+  <h1>Create a Choicecard</h1>
 
-  <div>
+    <form method="POST" >
+      <p><label for="question-title">Title</label>
+      <input type="text" id="question-title" name="title" placeholder="Title" required/>
+      </p> 
+      <p><label for="question-description">Description:</label>
+      <input type="text" id="question-description" name="description" placeholder="Add more detail..." />
+      </p>
     
-<h4>Provide 4 possible solutions, one of which is correct. Remember to put the correct one first! </h4>
-<p>
-   <label for="correctAnswer">Correct Answer:</label>
-  <input type="text" id="correctAnswer" name="correctAnswer" placeholder="The correct answer..." required/>
-</p>
- 
-  <h4>Incorrect Answers:</h4>
+    <div id="metaInput" >
+
+   <p><label for="topic">Main Topic: </label>
+      <select name="topic" id="question-topic" required>
+      <option value="" selected disabled>Topic</option> <!-- Display empty placeholder value-->
+      <option value="Javascript - Syntax">Javascript - Syntax</option>
+      <option value="Javascript - Basic Logic">Javascript - Basic Logic</option>
+      <option value="Javascript - Object Oriented Programming">Javascript - Object Oriented Programming</option>
+      <option value="HTML">HTML</option>
+      <option value="Node">Node</option>
+      <option value="Node - Express">Node - Express</option>
+      <option value="MongoDB - Queries">MongoDB - Queries</option>
+      <option value="Deployment">Deployment</option>
+      <option value="Templating">Templating</option>
+      <option value="GIT">GIT</option>
+      </select>
+   
+    <label for="module">Module:</label>
+        <select name="module" id="module" required>
+        <option value="" selected disabled>Module</option> <!-- Display empty placeholder value-->
+        <option value="Module 1">Module 1</option>
+        <option value="Module 2">Module 2</option>
+          <option value="Module 3">Module 3</option>
+        </select>
+    </p>
 
   <p>
-    <label for="answer2">Answer 2:</label>
-  <input type="text" id="answer2" name="answer2" placeholder="Second possible answer..." required/>
+    <label for="question-difficulty">Difficulty on a scale of 1 through 10: </label>
+    <input type="range" min="1" max="10" step="1" id="question-difficulty" name="difficulty"  required>
   </p>
-  <p>
-     <label for="answer3">Answer 3:</label>
- <input type="text" id="answer3" name="answer3" placeholder="Third possible answer..." required/>
-  </p>
-  <p>
-    <label for="answer4">Answer 4:</label>
- <input type="text" id="answer4" name="answer4" placeholder="Fourth possible answer..." required/>  
-  </p>
- 
 
+ 
+ </div>
+    </div>
+    
+  <div id="right">
+<h5>Provide 4 possible solutions, one of which is correct: </h5>
+    <p><label for="correctAnswer">Correct Answer:</label>
+    <input type="text" id="correctAnswer" name="correctAnswer" placeholder="The correct answer..." required/>
+    </p>
+  <h5>Incorrect Answers:</h5>
+    <p><label for="answer2">Answer 2:</label>
+    <input type="text" id="answer2" name="answer2" placeholder="Second possible answer..." required/>
+    </p>
+    <p><label for="answer3">Answer 3:</label>
+    <input type="text" id="answer3" name="answer3" placeholder="Third possible answer..." required/>
+    </p>
+    <p><label for="answer4">Answer 4:</label>
+    <input type="text" id="answer4" name="answer4" placeholder="Fourth possible answer..." required/>  
+    </p>
+ 
+ <button type="submit">Submit</button>
+
+
+  </form>
   </div>
  
 
-  
- 
- <div class="metaInput">
-
-   <p>
-     <label for="topic">Main Topic: </label>
-  <select name="topic" id="question-topic" required>
-    <option value="" selected disabled>Topic</option> <!-- Display empty placeholder value-->
-    <option value="Javascript - Syntax">Javascript - Syntax</option>
-    <option value="Javascript - Basic Logic">Javascript - Basic Logic</option>
-    <option value="Javascript - Object Oriented Programming">Javascript - Object Oriented Programming</option>
-    <option value="HTML">HTML</option>
-    <option value="Node">Node</option>
-    <option value="Node - Express">Node - Express</option>
-    <option value="MongoDB - Queries">MongoDB - Queries</option>
-    <option value="Deployment">Deployment</option>
-    <option value="Templating">Templating</option>
-    <option value="GIT">GIT</option>
-  </select>
-   
-  <label for="module">Module:</label>
-  <select name="module" id="module" required>
-    <option value="" selected disabled>Module</option> <!-- Display empty placeholder value-->
-    <option value="Module 1">Module 1</option>
-    <option value="Module 2">Module 2</option>
-    <option value="Module 3">Module 3</option>
-  </select>
-</p>
-
-<p>
-  <label for="question-difficulty">Difficulty on a scale of 1 through 10: </label>
-  <input type="range" min="1" max="10" step="1" id="question-difficulty" name="difficulty"  required>
-</p>
- </div>
-  
-  <button type="submit">Submit</button>
-</form>
 </div>

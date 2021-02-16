@@ -4,6 +4,7 @@
     <button>Submit comment</button>
 </form>
 
+{{#if comment}}
 <ul>
     {{#each comment}}
     <li>
@@ -14,3 +15,4 @@
     </li>
     {{/each}}
 </ul>
+{{/if}}

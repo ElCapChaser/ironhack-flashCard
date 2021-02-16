@@ -4,6 +4,7 @@ const express = require('express');
 const router = new express.Router();
 const routeGuard = require('./../middleware/route-guard');
 const Choicecard = require('./../models/choicecard');
+const Response = require('./../models/response');
 
 router.get('/', (req, res, next) => {
     res.render('home', { title: 'Iron Flashcards' });
@@ -84,6 +85,31 @@ router.post('/browsechoicecards', (req, res, next) => {
                 cardtype: 'Choicecards',
                 flashcards: choicecards,
                 isflashcard: isflashcard
+            });
+        })
+        .catch((error) => {
+            next(error);
+        });
+});
+
+//browse next
+router.post('/browsenext/:topic', (req, res, next) => {
+    const topic = req.params.topic;
+    Choicecard.findOne({
+            topic: topic
+        })
+        .then((card) => {
+            Response.find({ user: req.user._id, card: card._id }).then((resp) => {
+                console.log(resp);
+                if (resp[0].correct) {
+                    console.log('correct response');
+                    res.render('error', {
+                        message: 'Well Done. You have answered all cards to this topic correctly!'
+                    });
+                    return;
+                } else {
+                    res.redirect(`/choicecard/${card._id}`);
+                }
             });
         })
         .catch((error) => {

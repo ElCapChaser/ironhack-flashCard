@@ -4,15 +4,18 @@
     <h4>Bootcamp: {{#if user.fullTime}}Full Time{{else}}Part Time{{/if}}</h4>
 <img src="{{user.profilePicture}}" alt="awesome profile pic">
     </div>
-    <div>
+    <div id="stats">
+        <img src="/growth.svg" alt="stats" height="120">
         <h4>Your Stats:</h4>
-        <p>Highscore overall - Correct Answer Streak: {{user.highscore}}</p>
-        <p>Current Correct Answer Streak:{{user.correctAnswerStreak}} </p>
+        <p>Highscore: {{user.highscore}}</p>
+        <p>Current Correct Answer Streak: {{user.correctAnswerStreak}} </p>
     </div>
     
 </div>
-<h4>Your cards: </h4>
+ {{#if cards}}
+<h4 id="yourCards">Your cards: </h4>
 <div id="createdCards">
+   
     {{#each cards}}
     <div id="singleCard">
         <h4><a href="/choicecard/{{this._id}}">{{questionTitle}}</a></h4>
@@ -20,4 +23,6 @@
         <small>Upvotes: {{upvotes}} - Errorvotes: {{errorvotes}}</small>
     </div>
     {{/each}}
+
 </div>
+{{/if}}
