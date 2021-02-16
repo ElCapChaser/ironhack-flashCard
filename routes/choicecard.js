@@ -154,7 +154,7 @@ router.post('/:id', (req, res, next) => {
     });
 });
 
-//update choicecard -- ASYNC AWAIT
+//update choicecard -- ASYNC 
 // router.get('/:id/update', async(req, res, next) => {
 //     try {
 //         const id = req.params.id;
