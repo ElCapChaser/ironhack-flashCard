@@ -1,0 +1,29 @@
+$grey: hsl(0, 0, 90%);
+$pistachio: #e4fde1;
+$darkPistachio: #8acb88;
+$steelTeal: #648381;
+$darkGrey: #575761;
+$mustardYellow: #ebc379;
+$redBrown: #aa4535;
+#welcome {
+    background-image: url('/flashcards2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 5em;
+    h1 {
+        font-size: 6em;
+    }
+    p {
+        display: flex;
+        font-size: 2.3em;
+        color: $darkGrey;
+    }
+    img {
+        margin-left: 15em;
+    }
+    button {
+        background-color: #ebc379;
+        color: #aa4535;
+        font-weight: 500;
+    }
+}

@@ -1,0 +1,46 @@
+$grey: hsl(0, 0, 90%);
+$pistachio: #e4fde1;
+$darkPistachio: #8acb88;
+$steelTeal: #648381;
+$darkGrey: #575761;
+$mustardYellow: #ebc379;
+$redBrown: #aa4535;
+#feedbackPage {
+    color: #404047;
+    h1 {
+        background-color: #ebc379;
+        margin-top: 1em;
+        padding: 0.6em;
+    }
+    p {
+        letter-spacing: 3px;
+        flex-grow: 1;
+        span {
+            font-weight: 500;
+            font-size: 1.1em;
+            background-color: #8acb88;
+            padding: 0.1em;
+        }
+    }
+    h4 {
+        margin-top: 0;
+        margin-left: 2em;
+        letter-spacing: 3px;
+        flex-grow: 1;
+    }
+    div {
+        display: flex;
+        #feedbackPageButtons {
+            margin-left: auto;
+            button {
+                max-width: none;
+                max-height: 3em;
+                padding: 0.6em;
+                margin: 0.2em;
+                background-color: #648381;
+                color: #b8d4d3;
+                font-weight: 500;
+            }
+        }
+    }
+}

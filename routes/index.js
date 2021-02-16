@@ -53,8 +53,13 @@ router.get('/randomchoicecard', (req, res, next) => {
 
 //browse form
 router.get('/browsechoicecards', (req, res, next) => {
-    let isflashcard = false;
+    const page = Number(req.query.page) || 1;
+    const limit = 8;
+    const skip = (page - 1) * limit;
+
     Choicecard.find()
+        .skip(skip)
+        .limit(limit)
         .then((choicecards) => {
             if (choicecards.length < 1) {
                 res.render('error', {
@@ -63,9 +68,9 @@ router.get('/browsechoicecards', (req, res, next) => {
                 return;
             }
             res.render('browse', {
-                cardtype: 'Choicecards',
                 flashcards: choicecards,
-                isflashcard: isflashcard
+                previousPage: page - 1,
+                nextPage: choicecards.length ? page + 1 : 0
             });
         })
         .catch((error) => {
@@ -75,16 +80,15 @@ router.get('/browsechoicecards', (req, res, next) => {
 
 //browse results
 router.post('/browsechoicecards', (req, res, next) => {
-    let isflashcard = false;
     const topic = req.body.topic;
+
     Choicecard.find({
-            topic: topic
-        })
-        .then((choicecards) => {
+        topic: topic
+    })
+
+    .then((choicecards) => {
             res.render('browse', {
-                cardtype: 'Choicecards',
-                flashcards: choicecards,
-                isflashcard: isflashcard
+                flashcards: choicecards
             });
         })
         .catch((error) => {

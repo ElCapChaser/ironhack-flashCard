@@ -1,6 +1,6 @@
 <div id="browse">
   
-  <h2>Browse {{cardtype}}</h2>
+  <h2>Browse Choicecards</h2>
 <div>
 <img src="/research.svg" alt="browseIcon" height="150">
 <form method="POST">
@@ -28,8 +28,17 @@
     <button class="card"><a href="/choicecard/{{this._id}}">{{this.questionTitle}}</a><br>
     <small>{{this.topic}}</small></button>
             {{/each}}
+  
 </div>
-
+  
+<div class="btn-group">
+  {{#if previousPage}}
+    <a href="/browsechoicecards?page={{previousPage}}" class="btn">Previous</a>
+  {{/if}}
+  {{#if nextPage}}
+    <a href="/browsechoicecards?page={{nextPage}}" class="btn">Next</a>
+  {{/if}}
+</div>
 </div>
 
 
