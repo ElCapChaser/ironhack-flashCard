@@ -28,3 +28,11 @@
 
 </div>
 {{/if}}
+
+<script>
+    const desc = document.getElementById("questionDescription"); 
+    desc.onmouseover = displayAnswer();
+    function displayAnswer(){
+        desc.style.display = "block"
+    }
+</script>

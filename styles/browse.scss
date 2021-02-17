@@ -11,8 +11,8 @@ $redBrown: #aa4535;
     flex-direction: column;
     align-items: center;
     h2 {
-        margin: 1em;
-        font-size: 3em;
+        margin: 1.5em;
+        font-size: 4em;
         color: #404047;
     }
     div {
@@ -32,11 +32,12 @@ $redBrown: #aa4535;
     h4 {
         color: #404047;
         font-size: 2em;
-        margin-bottom: 0;
+        margin: 3em 0em 1em 0em;
     }
     #displayFlashcards {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
     }
     .btn-group {
         display: flex;

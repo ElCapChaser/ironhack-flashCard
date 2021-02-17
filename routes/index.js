@@ -54,7 +54,7 @@ router.get('/randomchoicecard', (req, res, next) => {
 //browse form
 router.get('/browsechoicecards', (req, res, next) => {
     const page = Number(req.query.page) || 1;
-    const limit = 8;
+    const limit = 10;
     const skip = (page - 1) * limit;
 
     Choicecard.find()

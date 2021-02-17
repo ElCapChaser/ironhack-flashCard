@@ -25,7 +25,8 @@
 <h4>Results</h4>
 <div id="displayFlashcards">
     {{#each flashcards}}
-    <button class="card"><a href="/choicecard/{{this._id}}">{{this.questionTitle}}</a><br>
+    <button class="card"><p class="questionTitle"><a href="/choicecard/{{this._id}}">{{this.questionTitle}}</a></p>
+    <p class="hiddenQuestion" >{{this.questionDescription}}</p>
     <small>{{this.topic}}</small></button>
             {{/each}}
   
@@ -41,4 +42,6 @@
 </div>
 </div>
 
-
+<script>
+  
+</script>
