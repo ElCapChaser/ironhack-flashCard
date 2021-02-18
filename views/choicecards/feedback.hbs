@@ -13,7 +13,16 @@
         <button>Next</button>
         </form>
 
+        {{#if isReminder}}
+         <form action="/choicecard/removeReminder/{{cardId}}" method="POST">
+        <button>Remove Reminder!</button>
+        </form>
+        {{else}}
+        <form action="/choicecard/remind/{{cardId}}" method="POST">
         <button>Remind me!</button>
+        </form>
+        {{/if}}
+
     </div>
 
 </div>

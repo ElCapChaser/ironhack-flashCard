@@ -1,0 +1,41 @@
+$grey: hsl(0, 0, 90%);
+$pistachio: #e4fde1;
+$darkPistachio: #8acb88;
+$steelTeal: #648381;
+$darkGrey: #575761;
+$mustardYellow: #ebc379;
+$redBrown: #aa4535;
+.signIn {
+    background-color: rgb(247, 241, 234);
+    display: flex;
+    box-shadow: -2px 2px 2px 2px lightgrey;
+    padding: 2em;
+    justify-content: space-evenly;
+    color: #404047;
+    margin-top: 1em;
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 10em;
+        h1 {
+            background-color: #ebc379;
+            padding: 0.3em;
+            letter-spacing: 3px;
+            min-width: 10em;
+        }
+    }
+    label {
+        background-color: #8acb88;
+        color: #e4fde1;
+        padding: 0em 0.5em;
+    }
+    input,
+    select {
+        color: #f7fdf6;
+    }
+    button {
+        background-color: #aa4535;
+        color: #f7fdf6;
+    }
+}

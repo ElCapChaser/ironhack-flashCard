@@ -67,3 +67,17 @@ $redBrown: #aa4535;
         padding: 1em;
     }
 }
+
+#reminders {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    button {
+        font-weight: 500;
+        background-color: #648381;
+        color: #f1f7f0;
+        max-height: 2.5;
+    }
+    padding: 0.3em;
+    margin-top: 3.5em;
+}

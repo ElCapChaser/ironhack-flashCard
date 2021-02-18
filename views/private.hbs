@@ -6,14 +6,22 @@
     </div>
     <div id="stats">
         <img src="/growth.svg" alt="stats" height="120">
-        <h4>Your Stats:</h4>
+        <h4> Stats:</h4>
         <p>Highscore: {{user.highscore}}</p>
         <p>Current Correct Answer Streak: {{user.correctAnswerStreak}} </p>
+<p id="reminders">
+    <img src="/reminders.svg" alt="reminderIcon" height="80">
+    <button> <a href="/private/reminders">My reminders</a></button>
+
+</p>
     </div>
     
 </div>
+
+
+
  {{#if cards}}
-<h4 id="yourCards">Your cards: </h4>
+<h4 id="yourCards">My cards: </h4>
 <div id="createdCards">
    
     {{#each cards}}
@@ -29,10 +37,5 @@
 </div>
 {{/if}}
 
-<script>
-    const desc = document.getElementById("questionDescription"); 
-    desc.onmouseover = displayAnswer();
-    function displayAnswer(){
-        desc.style.display = "block"
-    }
-</script>
+
+

@@ -1,0 +1,45 @@
+$grey: hsl(0, 0, 90%);
+$pistachio: #e4fde1;
+$darkPistachio: #8acb88;
+$steelTeal: #648381;
+$darkGrey: #575761;
+$mustardYellow: #ebc379;
+$redBrown: #aa4535;
+#remindersConatiner {
+    display: flex;
+    flex-direction: column;
+    h1 {
+        text-align: center;
+        background-color: #8acb88;
+        color: #44444b;
+        margin-top: 0.5em;
+    }
+    div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: #daceb8;
+        justify-content: space-evenly;
+        padding: 2em;
+        .reminder {
+            display: flex;
+            flex-direction: column;
+            margin: 1em;
+            background-color: #648381;
+            color: #f5f8f5;
+            padding: 1em;
+            box-shadow: -2px 2px 2px 2px rgb(170, 160, 160);
+            h3 {
+                font-weight: 500;
+                background-color: #aa4535;
+                color: #f5eee1;
+                padding: 0.3em;
+            }
+            button {
+                background-color: #8acb88;
+                color: #575761;
+                font-weight: 500;
+            }
+        }
+    }
+}

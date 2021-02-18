@@ -3,6 +3,7 @@ const Choicecard = require('./../models/choicecard');
 const Response = require('./../models/response');
 const Comment = require('./../models/comment');
 const User = require('./../models/user');
+const Reminder = require('./../models/reminder');
 const nodemailer = require('./../nodemailer');
 
 //const routeGuardMiddleware = require('./../middleware/route-guard');
@@ -91,9 +92,12 @@ router.get('/:id', (req, res, next) => {
 
 // check if correct Answer was given to choicecard:
 router.post('/:id', (req, res, next) => {
+    //aux varaibles
     let topic;
+    let theCard;
     Choicecard.findById(req.params.id).then((choicecard) => {
         topic = choicecard.topic;
+        theCard = choicecard;
 
         //find correct answer to display to user later
         let correctAnswer;
@@ -121,6 +125,16 @@ router.post('/:id', (req, res, next) => {
                 }
             })
             .then(() => {
+                //see if there is a reminder for this card for this user
+                return Reminder.find({ user: req.user, card: theCard });
+            })
+            .then((reminder) => {
+                console.log(reminder);
+                let isReminder;
+                if (reminder.length > 0) {
+                    isReminder = true;
+                }
+
                 let correct;
                 if (req.body.answer === 'true') {
                     correct = true;
@@ -137,7 +151,9 @@ router.post('/:id', (req, res, next) => {
                             correct: correct,
                             id: req.params.id,
                             topic: topic,
-                            correctAnswer: correctAnswer
+                            correctAnswer: correctAnswer,
+                            cardId: theCard._id,
+                            isReminder: isReminder
                         });
                     });
                 } else {
@@ -155,7 +171,8 @@ router.post('/:id', (req, res, next) => {
                                 correct: correct,
                                 id: req.params.id,
                                 topic: topic,
-                                correctAnswer: correctAnswer
+                                correctAnswer: correctAnswer,
+                                cardId: theCard
                             });
                         })
                         .catch((error) => {
@@ -234,7 +251,6 @@ router.get('/:id/delete', (req, res, next) => {
                     res.render('choicecards/confirm-deletion', {
                         choicecard: choicecard
                     });
-                    console.log(choicecard)
                     return;
                 }
             } else {
@@ -253,6 +269,51 @@ router.post('/:id/delete', (req, res, next) => {
     Choicecard.findByIdAndDelete(id)
         .then(() => {
             res.redirect('/');
+        })
+        .catch((error) => {
+            next(error);
+        });
+});
+
+///////////////////////////////////////////////////////////////////////////////////
+//////////// REMIND ME FUNCTION //////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+
+router.post('/remind/:id', (req, res, next) => {
+    const id = req.params.id;
+    Choicecard.findById(id)
+        .then((choicecard) => {
+            return Reminder.find({ user: req.user._id, card: id }).then(
+                (reminders) => {
+                    if (reminders.length < 1) {
+                        return Reminder.create({
+                            user: req.user,
+                            card: choicecard
+                        });
+                    } else {
+                        res.redirect('/browsechoicecards');
+                        return;
+                    }
+                }
+            );
+        })
+        .then(() => {
+            res.redirect('/browsechoicecards');
+        })
+        .catch((error) => {
+            next(error);
+        });
+});
+
+router.post('/removeReminder/:id', (req, res, next) => {
+    const id = req.params.id;
+    Choicecard.findById(id)
+        .then((card) => {
+            return Reminder.findOneAndDelete({ card: card });
+        })
+        .then(() => {
+            console.log('deleted');
+            res.redirect('/private/reminders');
         })
         .catch((error) => {
             next(error);

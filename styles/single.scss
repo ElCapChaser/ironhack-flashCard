@@ -78,17 +78,20 @@ $redBrown: #aa4535;
     margin: 1.5em 2em;
     background-color: #f1cf90;
     color: #575761;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     a {
         background-color: #aa4535;
         color: whitesmoke;
         padding: 0.2em;
         margin-bottom: 2em;
     }
-    small {
-        margin-top: 5em;
-    }
     .hiddenQuestion {
         display: none;
+        max-width: 12em;
+        text-align: center;
+        font-size: 1em;
     }
     .questionTitle:hover+.hiddenQuestion {
         display: block;

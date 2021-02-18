@@ -41,6 +41,7 @@ node_modules
 # ignore the scss files
 
 *.css
+*.css.map
 
 #ignore the supermemo stuff
 .lib

@@ -1,0 +1,15 @@
+
+<div id="remindersConatiner">
+<h1>Your reminders</h1>
+<div>
+{{#each reminders}}
+<div class="reminder">
+    <h3>{{card.questionTitle}}</h3>
+    <p>{{card.questionDescription}}</p>
+    <button><a href="/choicecard/{{card._id}}">Try again!</a></button>
+</div>
+{{/each}}
+
+</div>
+
+</div>

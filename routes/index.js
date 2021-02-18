@@ -1,10 +1,12 @@
 'use strict';
 
 const express = require('express');
+const { ObjectId } = require('mongodb');
 const router = new express.Router();
 const routeGuard = require('./../middleware/route-guard');
 const Choicecard = require('./../models/choicecard');
 const Response = require('./../models/response');
+const Reminder = require('./../models/reminder');
 
 router.get('/', (req, res, next) => {
     res.render('home', { title: 'Iron Flashcards' });
@@ -13,13 +15,26 @@ router.get('/', (req, res, next) => {
 router.get('/private', routeGuard, (req, res, next) => {
     //get id of currently logged in user:
     const id = req.user._id;
-    console.log(id);
     Choicecard.find({ creator: req.user }).then((cards) => {
-        console.log(cards);
         res.render('private', {
             cards: cards
         });
     });
+});
+
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////// User's Reminders ///////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
+router.get('/private/reminders', routeGuard, (req, res, next) => {
+    Reminder.find({ user: req.user })
+        .populate('card')
+        .then((reminders) => {
+            console.log(reminders);
+            res.render('reminders', {
+                reminders: reminders
+            });
+        });
 });
 
 ///////////////////////////////////////////////////////////////////////////////////
