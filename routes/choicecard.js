@@ -91,237 +91,231 @@ router.get('/:id', (req, res, next) => {
 });
 
 // check if correct Answer was given to choicecard:
-router.post('/:id', (req, res, next) => { <<
-            << << < HEAD
+router.post('/:id', (req, res, next) => {
             //aux varaibles
             let topic;
             let theCard;
             Choicecard.findById(req.params.id).then((choicecard) => {
-                    topic = choicecard.topic;
-                    theCard = choicecard; ===
-                    === =
-                    let topic;
-                    Choicecard.findById(req.params.id).then((choicecard) => {
-                        topic = choicecard.topic; >>>
-                        >>> > 17 dd0d62ee748f37d6eb7a363899e3b27bbbb8fb
+                        topic = choicecard.topic;
+                        theCard = choicecard;
+                        let topic;
+                        Choicecard.findById(req.params.id).then((choicecard) => {
+                            topic = choicecard.topic;
 
-                        //find correct answer to display to user later
-                        let correctAnswer;
-                        for (let ans of choicecard.answers) {
-                            if (ans.correct) {
-                                correctAnswer = ans.message;
-                                break;
+                            //find correct answer to display to user later
+                            let correctAnswer;
+                            for (let ans of choicecard.answers) {
+                                if (ans.correct) {
+                                    correctAnswer = ans.message;
+                                    break;
+                                }
                             }
-                        }
-                        // check if user has answered this card before
-                        Response.find({ user: req.user._id, card: req.params.id })
-                            .then((existingResponse) => {
-                                if (existingResponse.length > 0) {
-                                    // if value is not null
-                                    return Response.findByIdAndUpdate(existingResponse[0]._id, {
-                                        correct: req.body.answer
-                                    });
-                                } else {
-                                    //if user has not answered this card before
-                                    return Response.create({
-                                        correct: req.body.answer,
-                                        user: req.user,
-                                        card: choicecard
-                                    });
-                                } <<
-                                << << < HEAD
-                                // check if user has answered this card before
-                                Response.find({ user: req.user._id, card: req.params.id })
-                                    .then((existingResponse) => {
-                                        if (existingResponse.length > 0) {
-                                            // if value is not null
-                                            return Response.findByIdAndUpdate(existingResponse[0]._id, {
-                                                correct: req.body.answer
-                                            });
-                                        } else {
-                                            //if user has not answered this card before
-                                            return Response.create({
-                                                correct: req.body.answer,
-                                                user: req.user,
-                                                card: choicecard
-                                            });
-                                        }
-                                    })
-                                    .then(() => {
-                                        //see if there is a reminder for this card for this user
-                                        return Reminder.find({ user: req.user, card: theCard });
-                                    })
-                                    .then((reminder) => {
-                                        console.log(reminder);
-                                        let isReminder;
-                                        if (reminder.length > 0) {
-                                            isReminder = true;
-                                        }
-
-                                        let correct;
-                                        if (req.body.answer === 'true') {
-                                            correct = true;
-
-                                            User.findByIdAndUpdate(
-                                                req.user._id, {
-                                                    $inc: {
-                                                        correctAnswerStreak: 1
-                                                    }
-                                                }, { new: true }
-                                            ).then((user) => {
-                                                res.render('choicecards/feedback', {
-                                                    user: user,
-                                                    correct: correct,
-                                                    id: req.params.id,
-                                                    topic: topic,
-                                                    correctAnswer: correctAnswer,
-                                                    cardId: theCard._id,
-                                                    isReminder: isReminder
+                            // check if user has answered this card before
+                            Response.find({ user: req.user._id, card: req.params.id })
+                                .then((existingResponse) => {
+                                    if (existingResponse.length > 0) {
+                                        // if value is not null
+                                        return Response.findByIdAndUpdate(existingResponse[0]._id, {
+                                            correct: req.body.answer
+                                        });
+                                    } else {
+                                        //if user has not answered this card before
+                                        return Response.create({
+                                            correct: req.body.answer,
+                                            user: req.user,
+                                            card: choicecard
+                                        });
+                                    }
+                                    // check if user has answered this card before
+                                    Response.find({ user: req.user._id, card: req.params.id })
+                                        .then((existingResponse) => {
+                                            if (existingResponse.length > 0) {
+                                                // if value is not null
+                                                return Response.findByIdAndUpdate(existingResponse[0]._id, {
+                                                    correct: req.body.answer
                                                 });
-                                            });
-                                        } else {
-                                            correct = false;
-                                            const highscore = req.user.correctAnswerStreak;
-                                            User.findByIdAndUpdate(
+                                            } else {
+                                                //if user has not answered this card before
+                                                return Response.create({
+                                                    correct: req.body.answer,
+                                                    user: req.user,
+                                                    card: choicecard
+                                                });
+                                            }
+                                        })
+                                        .then(() => {
+                                            //see if there is a reminder for this card for this user
+                                            return Reminder.find({ user: req.user, card: theCard });
+                                        })
+                                        .then((reminder) => {
+                                            console.log(reminder);
+                                            let isReminder;
+                                            if (reminder.length > 0) {
+                                                isReminder = true;
+                                            }
+
+                                            let correct;
+                                            if (req.body.answer === 'true') {
+                                                correct = true;
+
+                                                User.findByIdAndUpdate(
                                                     req.user._id, {
-                                                        correctAnswerStreak: 0,
-                                                        highscore: highscore
+                                                        $inc: {
+                                                            correctAnswerStreak: 1
+                                                        }
                                                     }, { new: true }
-                                                )
-                                                .then((user) => {
+                                                ).then((user) => {
                                                     res.render('choicecards/feedback', {
                                                         user: user,
                                                         correct: correct,
                                                         id: req.params.id,
                                                         topic: topic,
                                                         correctAnswer: correctAnswer,
-                                                        cardId: theCard
+                                                        cardId: theCard._id,
+                                                        isReminder: isReminder
                                                     });
-                                                })
-                                                .catch((error) => {
-                                                    next(error);
                                                 });
-                                        } ===
-                                        === =
-                                    })
-                                    .then(() => {
-                                        let correct;
-                                        if (req.body.answer === 'true') {
-                                            correct = true;
+                                            } else {
+                                                correct = false;
+                                                const highscore = req.user.correctAnswerStreak;
+                                                User.findByIdAndUpdate(
+                                                        req.user._id, {
+                                                            correctAnswerStreak: 0,
+                                                            highscore: highscore
+                                                        }, { new: true }
+                                                    )
+                                                    .then((user) => {
+                                                        res.render('choicecards/feedback', {
+                                                            user: user,
+                                                            correct: correct,
+                                                            id: req.params.id,
+                                                            topic: topic,
+                                                            correctAnswer: correctAnswer,
+                                                            cardId: theCard
+                                                        });
+                                                    })
+                                                    .catch((error) => {
+                                                        next(error);
+                                                    });
+                                            }
+                                        })
+                                        .then(() => {
+                                            let correct;
+                                            if (req.body.answer === 'true') {
+                                                correct = true;
 
-                                            User.findByIdAndUpdate(
-                                                    req.user._id, {
-                                                        $inc: {
-                                                            correctAnswerStreak: 1
+                                                User.findByIdAndUpdate(
+                                                        req.user._id, {
+                                                            $inc: {
+                                                                correctAnswerStreak: 1
+                                                            }
+                                                        }, { new: true }
+                                                    )
+                                                    .then((user) => {
+                                                        if (user.correctAnswerStreak > user.highscore) {
+                                                            return User.findByIdAndUpdate(
+                                                                req.user._id, { highscore: user.correctAnswerStreak }, { new: true }
+                                                            );
+                                                        } else {
+                                                            return User.findById(req.user._id);
                                                         }
-                                                    }, { new: true }
-                                                )
-                                                .then((user) => {
-                                                    if (user.correctAnswerStreak > user.highscore) {
-                                                        return User.findByIdAndUpdate(
-                                                            req.user._id, { highscore: user.correctAnswerStreak }, { new: true }
-                                                        );
-                                                    } else {
-                                                        return User.findById(req.user._id);
-                                                    }
-                                                })
-                                                .then((user) => {
-                                                    res.render('choicecards/feedback', {
-                                                        user: user,
-                                                        correct: correct,
-                                                        id: req.params.id,
-                                                        topic: topic,
-                                                        correctAnswer: correctAnswer
+                                                    })
+                                                    .then((user) => {
+                                                        res.render('choicecards/feedback', {
+                                                            user: user,
+                                                            correct: correct,
+                                                            id: req.params.id,
+                                                            topic: topic,
+                                                            correctAnswer: correctAnswer
+                                                        });
+                                                    })
+                                                    .catch((error) => next(error));
+                                            } else {
+                                                correct = false;
+                                                const highscore = req.user.correctAnswerStreak;
+                                                User.findByIdAndUpdate(
+                                                        req.user._id, {
+                                                            correctAnswerStreak: 0,
+                                                            highscore: highscore
+                                                        }, { new: true }
+                                                    )
+                                                    .then((user) => {
+                                                        res.render('choicecards/feedback', {
+                                                            user: user,
+                                                            correct: correct,
+                                                            id: req.params.id,
+                                                            topic: topic,
+                                                            correctAnswer: correctAnswer
+                                                        });
+                                                    })
+                                                    .catch((error) => {
+                                                        next(error);
                                                     });
-                                                })
-                                                .catch((error) => next(error));
-                                        } else {
-                                            correct = false;
-                                            const highscore = req.user.correctAnswerStreak;
-                                            User.findByIdAndUpdate(
-                                                    req.user._id, {
-                                                        correctAnswerStreak: 0,
-                                                        highscore: highscore
-                                                    }, { new: true }
-                                                )
-                                                .then((user) => {
-                                                    res.render('choicecards/feedback', {
-                                                        user: user,
-                                                        correct: correct,
-                                                        id: req.params.id,
-                                                        topic: topic,
-                                                        correctAnswer: correctAnswer
-                                                    });
-                                                })
-                                                .catch((error) => {
-                                                    next(error); >>>
-                                                    >>> > 17 dd0d62ee748f37d6eb7a363899e3b27bbbb8fb
-                                                });
-                                        }
-                                    });
-                            });
-                    });
+                                            }
+                                        });
+                                });
+                        });
 
-                    //update choicecard -- ASYNC AWAIT
-                    router.get('/:id/update', async(req, res, next) => {
-                        try {
-                            const id = req.params.id;
-                            const choicecard = await Choicecard.findById(id);
-                            let correctAnswer; //aux varaiable
+                        //update choicecard -- ASYNC AWAIT
+                        router.get('/:id/update', async(req, res, next) => {
+                            try {
+                                const id = req.params.id;
+                                const choicecard = await Choicecard.findById(id);
+                                let correctAnswer; //aux varaiable
 
-                            if (req.user && choicecard.creator) {
-                                if (req.user._id.equals(choicecard.creator._id)) {
-                                    //find which answer is correct
-                                    for (let ans of choicecard.answers) {
-                                        if (ans.correct) {
-                                            correctAnswer = ans.message;
-                                            break;
+                                if (req.user && choicecard.creator) {
+                                    if (req.user._id.equals(choicecard.creator._id)) {
+                                        //find which answer is correct
+                                        for (let ans of choicecard.answers) {
+                                            if (ans.correct) {
+                                                correctAnswer = ans.message;
+                                                break;
+                                            }
                                         }
+                                        res.render('choicecards/update', {
+                                            choicecard: choicecard,
+                                            correctAnswer: correctAnswer
+                                        });
+                                        return;
+                                    } else {
+                                        res.render('error', {
+                                            message: 'You do not have permission to edit this card!'
+                                        });
                                     }
-                                    res.render('choicecards/update', {
-                                        choicecard: choicecard,
-                                        correctAnswer: correctAnswer
-                                    });
-                                    return;
                                 } else {
+                                    console.log('err');
                                     res.render('error', {
                                         message: 'You do not have permission to edit this card!'
                                     });
                                 }
-                            } else {
-                                console.log('err');
-                                res.render('error', {
-                                    message: 'You do not have permission to edit this card!'
-                                });
-                            }
-                        } catch (error) {
-                            next(error);
-                        }
-                    });
-
-                    router.post('/:id/update', (req, res, next) => {
-                        const id = req.params.id;
-                        const data = req.body;
-
-                        Choicecard.findByIdAndUpdate(id, {
-                                questionTitle: data.title,
-                                questionDescription: data.description,
-                                //answers
-                                solution: data.solution,
-                                topic: data.topic,
-                                module: data.module,
-                                difficulty: data.difficulty
-                            })
-                            .then((choicecard) => {
-                                res.redirect(`/choicecard/${choicecard._id}`);
-                            })
-                            .catch((error) => {
+                            } catch (error) {
                                 next(error);
-                            });
-                    });
+                            }
+                        });
 
-                    //delete choicecard
-                    router.get('/:id/delete', (req, res, next) => {
+                        router.post('/:id/update', (req, res, next) => {
+                            const id = req.params.id;
+                            const data = req.body;
+
+                            Choicecard.findByIdAndUpdate(id, {
+                                    questionTitle: data.title,
+                                    questionDescription: data.description,
+                                    //answers
+                                    solution: data.solution,
+                                    topic: data.topic,
+                                    module: data.module,
+                                    difficulty: data.difficulty
+                                })
+                                .then((choicecard) => {
+                                    res.redirect(`/choicecard/${choicecard._id}`);
+                                })
+                                .catch((error) => {
+                                    next(error);
+                                });
+                        });
+
+                        //delete choicecard
+                        router.get('/:id/delete', (req, res, next) => {
                             const id = req.params.id;
                             Choicecard.findById(id)
                                 .then((choicecard) => {
@@ -341,72 +335,62 @@ router.post('/:id', (req, res, next) => { <<
                                 .catch((error) => {
                                     next(error);
                                 });
-                        }
-                    })
-                .catch((error) => {
-                    next(error);
-                });
-            });
+                        });
 
-        router.post('/:id/delete', (req, res, next) => {
-            const id = req.params.id;
-            Choicecard.findByIdAndDelete(id)
-                .then(() => {
-                    res.redirect('/');
-                })
-                .catch((error) => {
-                    next(error);
-                });
-        });
-
-        <<
-        << << < HEAD
-        ///////////////////////////////////////////////////////////////////////////////////
-        //////////// REMIND ME FUNCTION //////////////////////////////////////////////////
-        //////////////////////////////////////////////////////////////////////////////////
-
-        router.post('/remind/:id', (req, res, next) => {
-            const id = req.params.id;
-            Choicecard.findById(id)
-                .then((choicecard) => {
-                    return Reminder.find({ user: req.user._id, card: id }).then(
-                        (reminders) => {
-                            if (reminders.length < 1) {
-                                return Reminder.create({
-                                    user: req.user,
-                                    card: choicecard
+                        router.post('/:id/delete', (req, res, next) => {
+                            const id = req.params.id;
+                            Choicecard.findByIdAndDelete(id)
+                                .then(() => {
+                                    res.redirect('/');
+                                })
+                                .catch((error) => {
+                                    next(error);
                                 });
-                            } else {
-                                res.redirect('/browsechoicecards');
-                                return;
-                            }
-                        }
-                    );
-                })
-                .then(() => {
-                    res.redirect('/browsechoicecards');
-                })
-                .catch((error) => {
-                    next(error);
-                });
-        });
+                        });
 
-        router.post('/removeReminder/:id', (req, res, next) => {
-            const id = req.params.id;
-            Choicecard.findById(id)
-                .then((card) => {
-                    return Reminder.findOneAndDelete({ card: card });
-                })
-                .then(() => {
-                    console.log('deleted');
-                    res.redirect('/private/reminders');
-                })
-                .catch((error) => {
-                    next(error);
-                });
-        });
+                        ///////////////////////////////////////////////////////////////////////////////////
+                        //////////// REMIND ME FUNCTION //////////////////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////////////////////
 
-        module.exports = router; ===
-        === =
-        module.exports = router; >>>
-        >>> > 17 dd0d62ee748f37d6eb7a363899e3b27bbbb8fb
+                        router.post('/remind/:id', (req, res, next) => {
+                            const id = req.params.id;
+                            Choicecard.findById(id)
+                                .then((choicecard) => {
+                                    return Reminder.find({ user: req.user._id, card: id }).then(
+                                        (reminders) => {
+                                            if (reminders.length < 1) {
+                                                return Reminder.create({
+                                                    user: req.user,
+                                                    card: choicecard
+                                                });
+                                            } else {
+                                                res.redirect('/browsechoicecards');
+                                                return;
+                                            }
+                                        }
+                                    );
+                                })
+                                .then(() => {
+                                    res.redirect('/browsechoicecards');
+                                })
+                                .catch((error) => {
+                                    next(error);
+                                });
+                        });
+
+                        router.post('/removeReminder/:id', (req, res, next) => {
+                            const id = req.params.id;
+                            Choicecard.findById(id)
+                                .then((card) => {
+                                    return Reminder.findOneAndDelete({ card: card });
+                                })
+                                .then(() => {
+                                    console.log('deleted');
+                                    res.redirect('/private/reminders');
+                                })
+                                .catch((error) => {
+                                    next(error);
+                                });
+                        });
+
+                        module.exports = router;
