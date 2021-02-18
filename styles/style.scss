@@ -5,8 +5,12 @@
 @import 'feedback';
 @import 'create';
 @import 'deletion';
+<<<<<<< HEAD
 @import 'reminders';
 @import 'signIn';
+=======
+@import 'sign-in';
+>>>>>>> 17dd0d62ee748f37d6eb7a363899e3b27bbbb8fb
 $grey: hsl(0, 0, 90%);
 $pistachio: #e4fde1;
 $darkPistachio: #8acb88;
@@ -15,76 +19,76 @@ $darkGrey: #575761;
 $mustardYellow: #ebc379;
 $redBrown: #aa4535;
 * {
-    &,
-    &:before,
-    &:after {
-        box-sizing: border-box;
-    }
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
 }
 
 body {
-    padding: 0 1em;
-    margin: 0 auto;
-    margin-bottom: 1em;
-    font-family: 'Poppins', sans-serif;
-    line-height: 2;
+  padding: 0 1em;
+  margin: 0 auto;
+  margin-bottom: 1em;
+  font-family: 'Poppins', sans-serif;
+  line-height: 2;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 nav {
-    display: flex;
-    a,
-    button {
-        box-shadow: -2px 2px 2px 2px lightgrey;
-        margin-top: 1em;
-        margin-bottom: 0.5em;
-        max-width: none;
-        padding: 0.2em;
-        border: 0;
-        color: #575761;
-        &:not(:last-child) {
-            margin-right: 1em;
-            background-color: #d69992;
-        }
-        &:not(:last-child):hover {
-            padding: 0.5em 1em;
-        }
-        &:first-child {
-            margin-right: auto;
-            background-color: #d1e4ce;
-        }
+  display: flex;
+  a,
+  button {
+    box-shadow: -2px 2px 2px 2px lightgrey;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    max-width: none;
+    padding: 0.2em;
+    border: 0;
+    color: #575761;
+    &:not(:last-child) {
+      margin-right: 1em;
+      background-color: #d69992;
     }
-    button:hover {
-        padding: 0.5em 1em;
+    &:not(:last-child):hover {
+      padding: 0.5em 1em;
     }
-    button:hover {
-        padding: 1em;
+    &:first-child {
+      margin-right: auto;
+      background-color: #d1e4ce;
     }
+  }
+  button:hover {
+    padding: 0.5em 1em;
+  }
+  button:hover {
+    padding: 1em;
+  }
 }
 
 h1,
 h2,
 h3,
 p {
-    margin: 0;
-    line-height: inherit;
-    &:not(:last-child) {
-        margin-bottom: 1rem;
-    }
+  margin: 0;
+  line-height: inherit;
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
 }
 
 img {
-    width: 100%;
-    max-width: 100%;
+  width: 100%;
+  max-width: 100%;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 input:not([type='checkbox']),
@@ -94,28 +98,28 @@ textarea,
 select,
 button,
 .btn {
-    border: 1px solid $grey;
-    padding: 0.5em;
-    box-shadow: -2px 2px 2px 2px lightgrey;
-    border-radius: 0;
-    margin-bottom: 1em;
-    font: inherit;
-    color: inherit;
-    background-color: transparent;
-    max-width: fit-content;
+  border: 1px solid $grey;
+  padding: 0.5em;
+  box-shadow: -2px 2px 2px 2px lightgrey;
+  border-radius: 0;
+  margin-bottom: 1em;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  max-width: fit-content;
 }
 
 button:hover {
-    padding: 1em;
-    font-weight: 500;
-    cursor: pointer;
+  padding: 1em;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 textarea {
-    min-height: 8em;
-    resize: vertical;
+  min-height: 8em;
+  resize: vertical;
 }
 
 label {
-    margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }

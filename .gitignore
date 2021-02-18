@@ -43,6 +43,7 @@ node_modules
 *.css
 *.css.map
 
+
 #ignore the supermemo stuff
 .lib
 .superMemo.js
