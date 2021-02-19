@@ -1,0 +1,13 @@
+<h1 id="leaderHeader">Leaderboard</h1>
+<div id="leaderContainer">
+    <img src="/podium.svg" alt="podiumIcon" width="100">
+    <div>
+         {{#each leaders}}
+<div id="leader">
+    <h3>{{name}}</h3>
+    <p>Highscore: {{highscore}}</p>
+</div>
+{{/each}}
+    </div>
+   
+</div>

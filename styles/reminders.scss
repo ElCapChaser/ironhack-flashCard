@@ -13,14 +13,22 @@ $redBrown: #aa4535;
         background-color: #8acb88;
         color: #44444b;
         margin-top: 0.5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            max-width: 8em;
+        }
     }
     div {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         background-color: #daceb8;
-        justify-content: space-evenly;
+        color: #44444b;
+        justify-content: center;
         padding: 2em;
+        box-shadow: -2px 2px 2px 2px rgb(170, 160, 160);
         .reminder {
             display: flex;
             flex-direction: column;

@@ -1,7 +1,9 @@
 
 <div id="remindersConatiner">
-<h1>Your reminders</h1>
+<h1> <span>Your reminders</span> <img src="/reminders.svg" alt="remindersIcon"  width="100" height="50"></h1>
+
 <div>
+    {{#if reminders}}
 {{#each reminders}}
 <div class="reminder">
     <h3>{{card.questionTitle}}</h3>
@@ -9,7 +11,9 @@
     <button><a href="/choicecard/{{card._id}}">Try again!</a></button>
 </div>
 {{/each}}
-
+{{else}}
+<h2>You don't currently have any reminders.</h2>
+{{/if}}
 </div>
 
 </div>

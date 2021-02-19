@@ -7,6 +7,7 @@ const routeGuard = require('./../middleware/route-guard');
 const Choicecard = require('./../models/choicecard');
 const Response = require('./../models/response');
 const Reminder = require('./../models/reminder');
+const User = require('./../models/user');
 
 router.get('/', (req, res, next) => {
     res.render('home', { title: 'Iron Flashcards' });
@@ -136,4 +137,18 @@ router.post('/browsenext/:topic', (req, res, next) => {
         });
 });
 
+//////////////////////////////////////////////////////////////////////////////////////
+////////////////////// LEADERBOARD //////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+router.get('/leaderboard', (req, res, next) => {
+    User.find({})
+        .sort({ highscore: -1 })
+        .limit(10)
+        .then((leaders) => {
+            console.log(leaders);
+            res.render('leaderboard', {
+                leaders: leaders
+            });
+        });
+});
 module.exports = router;

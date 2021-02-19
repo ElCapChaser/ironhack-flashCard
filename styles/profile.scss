@@ -45,17 +45,19 @@ $redBrown: #aa4535;
     display: flex;
     box-shadow: -2px 2px 2px 2px lightgrey;
     padding: 2em;
-    justify-content: space-around;
+    justify-content: center;
     margin-top: 1em;
+    flex-wrap: wrap;
     #singleCard {
         width: fit-content;
         max-width: 15em;
-        margin: 0.5em;
+        margin: 1em 0.5em;
         background-color: #f8e9cc;
         color: #575761;
         padding: 0 1em;
         border: 1px solid whitesmoke;
         box-shadow: -2px 2px 2px 2px rgb(78, 78, 78);
+        min-width: 15em;
         h4 {
             font-weight: 500;
             background-color: #aa4535;
