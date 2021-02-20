@@ -17,17 +17,13 @@ $redBrown: #aa4535;
         -webkit-text-stroke-width: 1px;
         -webkit-text-stroke-color: #e4fde1;
     }
-    h1:hover {
-        font-size: 7.3em;
-        cursor: pointer;
-    }
     p {
         display: flex;
         font-size: 2.3em;
         color: $darkGrey;
     }
     img {
-        margin-left: 15em;
+        margin-left: 18em;
     }
     button {
         background-color: #ebc379;
@@ -35,5 +31,10 @@ $redBrown: #aa4535;
         font-weight: 500;
         padding: 1em;
         font-size: 1.2em;
+    }
+    button:hover {
+        padding: 1.3em;
+        border: 1px solid whitesmoke;
+        font-weight: 600;
     }
 }
