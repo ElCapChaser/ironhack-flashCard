@@ -67,7 +67,7 @@ const errorEmail = (creatorEmail) => {
               </style>
           </head>
           <body>
-              <h1>Welcome!</h1>
+              <h1>Oh no, is it be possible that you made a mistake?</h1>
               <p>More than 3 users flagged a possible error on one of your cards. <a href="https://ironflashcard.herokuapp.com/private">Check it out!</a></p>
               <footer>This email was sent as part of an IronHack class project. We are students learning how to code.</footer>
           </body>
