@@ -32,7 +32,7 @@ const choicecardSchema = new mongoose.Schema({
             'MongoDB - Queries',
             'Templating',
             'Deployment',
-            'Git'
+            'GIT'
         ]
     },
     module: {
