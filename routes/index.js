@@ -113,29 +113,29 @@ router.post('/browsechoicecards', (req, res, next) => {
 });
 
 //browse next
-router.post('/browsenext/:topic', (req, res, next) => {
-    const topic = req.params.topic;
-    Choicecard.findOne({
-            topic: topic
-        })
-        .then((card) => {
-            Response.find({ user: req.user._id, card: card._id }).then((resp) => {
-                console.log(resp);
-                if (resp[0].correct) {
-                    console.log('correct response');
-                    res.render('error', {
-                        message: 'Well Done. You have answered all cards to this topic correctly!'
-                    });
-                    return;
-                } else {
-                    res.redirect(`/choicecard/${card._id}`);
-                }
-            });
-        })
-        .catch((error) => {
-            next(error);
-        });
-});
+// router.post('/browsenext/:topic', (req, res, next) => {
+//     const topic = req.params.topic;
+//     Choicecard.findOne({
+//             topic: topic
+//         })
+//         .then((card) => {
+//             Response.find({ user: req.user._id, card: card._id }).then((resp) => {
+//                 console.log(resp);
+//                 if (resp[0].correct) {
+//                     console.log('correct response');
+//                     res.render('error', {
+//                         message: 'Well Done. You have answered all cards to this topic correctly!'
+//                     });
+//                     return;
+//                 } else {
+//                     res.redirect(`/choicecard/${card._id}`);
+//                 }
+//             });
+//         })
+//         .catch((error) => {
+//             next(error);
+//         });
+// });
 
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////// LEADERBOARD //////////////////////////////////////////////////
