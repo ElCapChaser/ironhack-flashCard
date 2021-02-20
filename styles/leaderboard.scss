@@ -33,11 +33,17 @@ $redBrown: #aa4535;
                 color: #44444b;
                 margin: 2em;
             }
+            img {
+                max-width: 7em;
+                max-height: 5em;
+                border-radius: 50px;
+            }
             p {
                 margin: 2em;
                 padding: 0.3em 0.5em;
                 color: #575761;
-                background-color: #fff243;
+                background-color: #ece1a4;
+                font-weight: 500;
             }
         }
     }

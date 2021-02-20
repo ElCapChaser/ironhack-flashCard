@@ -5,7 +5,11 @@
          {{#each leaders}}
 <div id="leader">
     <h3>{{name}}</h3>
+   {{#if profilePicture}}
+    <img src="{{profilePicture}}" alt="leader's cool pic" width="80">
+    {{/if}}
     <p>Highscore: {{highscore}}</p>
+    
 </div>
 {{/each}}
     </div>
