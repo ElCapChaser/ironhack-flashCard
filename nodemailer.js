@@ -28,7 +28,7 @@ const welcomeEmail = (userEmail) => {
           </head>
           <body>
               <h1>Welcome!</h1>
-              <p>We are happy to have you on board! <a href="#">Go and practice now!</a></p>
+              <p>We are happy to have you on board! <a href="https://ironflashcard.herokuapp.com/private">Go and practice now!</a></p>
               <footer>This email was sent as part of an IronHack class project. We are students learning how to code.</footer>
           </body>
           </html>`
@@ -68,7 +68,7 @@ const errorEmail = (creatorEmail) => {
           </head>
           <body>
               <h1>Welcome!</h1>
-              <p>More than 3 users flagged a possible error on one of your cards. <a href="#">Check it out!</a></p>
+              <p>More than 3 users flagged a possible error on one of your cards. <a href="https://ironflashcard.herokuapp.com/private">Check it out!</a></p>
               <footer>This email was sent as part of an IronHack class project. We are students learning how to code.</footer>
           </body>
           </html>`
